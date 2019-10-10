@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    background-color: #fdfcfc;
+}
+h1, h2, .date-crea {
+    text-align:center;
+}
+h1 {
+    margin-top: 0;
+    background-color:#7e62b5;
+    color:white;
+    padding: 2rem;
+}
+h2 {
+    margin-bottom: 1.5rem!important;
+}
+h4 {
+    margin-bottom: 0!important;
+}
+a {
+    color:#a07c11;
+}
+label {
+    width: 100%;
+    color: #FFF;
+    margin-bottom: 0!important;
+    padding: .15rem 0;
+    background-color: rgb(209, 209, 209);
+    border-radius: .25rem .25rem 0 0;
+}
+.news {
+    width:80%;
+    background-color: #fff;
+    margin: 2rem auto 3rem auto;
+    box-shadow: 5px 5px 15px #dcdada, -5px -5px 15px #dcdada, -5px 5px 15px #dcdada, 5px -5px 15px #dcdada;
+    padding: 1rem;
+    border-radius: .6rem;
+}
+
+.label-editor {
+    font-size: 1.25rem;  
+    font-weight: bold;
+}
+.radius {
+    border-radius: 0 0 .25rem .25rem!important;
+}
+.btn-publi {
+    background-color: #9176c6!important;
+    color: #FFF;
+    font-weight: bold;
+    border: none;
+    margin-top: 2rem;
+}
+.btn-publi:hover {
+    background-color: #5e4b83!important;
+
+}
+.date-crea {
+    font-size: 12px;
+}
+.contenu {
+    margin-top: 2rem;
+    text-align: justify;
+}
+.contenu-hidden{
+    height: 15rem;
+    overflow: hidden;
+}
+.commentaires {
+    text-transform: initial;
+    margin: 0.5rem 0;
+}
+.show-commentaires {
+    background-color: rgba(145, 118, 198, 0.37);
+    padding: 0.8rem;
+    border-radius: .25rem;
+}
+#id-billet {
+    display: none;
+}
+.back-link {
+    margin-left: .25rem;
+    font-style: italic;
+    margin-bottom: 0;
+}
+.form-control:focus {
+    border-color:  none!important;
+    outline: 0;
+    box-shadow: none!important;
+}

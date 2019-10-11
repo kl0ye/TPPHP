@@ -10,8 +10,6 @@
     }
     $req = $bdd->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet ORDER BY date_creation');
     $reqCom = $bdd->prepare('SELECT pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire DESC LIMIT 0,2');
-    
-    console_log($reqCom->fetch());
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +23,7 @@
         
     <body>
         <h1>Billet simple pour l'Alaska</h1>
+        
         <div class="row">
             <p class="back-link m-2">
                 <a href="editer.php">Ecrire un nouveau chapitre</a>
@@ -68,6 +67,6 @@
                     </div>
                 </div>
             <?php } ?>
-        </div>    
+        </div>
     </body>
 </html>

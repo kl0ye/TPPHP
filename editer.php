@@ -10,25 +10,26 @@
         
     <body>
         <h1>Billet simple pour l'Alaska</h1>
-        <p class="back-link">
-            <a href="index.php">Retour à la liste des billets</a>
-        </p>
-
-        <div class="news">
-            <div class="commentaires">
-                <form action="send.php" method="post">
-                    <h2 class="mb-3">Nouveau Chapitre</h2>
-                    <div class="input-form mb-3 text-center">
-                        <label class="label-editor" for="titre">Titre</label>
-                        <input type="text" class="form-control radius" name="titre" id="titre" required />
-                    </div>  
-                    <div class="input-form mb-3 text-center">
-                        <label class="label-editor" for="contenu">Contenu</label>
-                        <textarea class="form-control radius" rows="15" name="contenu" id="contenu" minlength="250" required></textarea>
-                    </div>    
-                    <input type="submit" class=" btn-publi btn-lg btn-block" value="Publier" />
-                </form>
+        <div class="row">
+            <p class=" mt-2 ml-2">
+                <a href="index.php">Retour à la liste des billets</a>
+            </p>
+            <div class="news">
+                <div class="commentaires">
+                    <form action="send.php" method="post">
+                        <h2 class="mb-5">Nouveau Chapitre</h2>
+                        <div class="input-form mb-4 text-center">
+                            <label class="label-editor" for="titre">Titre</label>
+                            <input type="text" class="form-control radius" name="titre" id="titre" required />
+                        </div>  
+                        <div class="input-form mb-4 text-center">
+                            <label class="label-editor" for="contenu">Contenu</label>
+                            <textarea class="form-control radius" rows="15" name="contenu" id="contenu" minlength="250" required></textarea>
+                        </div>    
+                        <input type="submit" class=" btn-publi btn-lg btn-block" value="Publier" />
+                    </form>
+                </div>
             </div>
-        </div>
+        </div>  
     </body>
 </html>

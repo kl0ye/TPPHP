@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-<?php include("functions.php"); ?>
-=======
 <?php
     session_start();
     try
@@ -71,7 +68,6 @@
     }
 ?>
 
->>>>>>> Stashed changes
 <!DOCTYPE html>
 <html>
     <head>
@@ -82,39 +78,11 @@
     </head>
         
     <body>
-<<<<<<< Updated upstream
-        <h1>Billet simple pour l'Alaska</h1>
-        <?php
-            $url = $_SERVER['REQUEST_URI'];
-            console_log($url);
-            if (strpos($url, "billet=1") !== false) {
-=======
         <?php include('header.php'); ?>
         <div class="row">
             <p class="back-link m-2">
                 <a href="index.php">Retour à l'accueil</a>
             </p>
->>>>>>> Stashed changes
-
-                console_log("coucou");
-            }
-            try
-            {
-                $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-            }
-            catch(Exception $e)
-            {
-                die('Erreur : '.$e->getMessage());
-            }
-
-            $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet WHERE id = ?');
-            $req->execute(array($_GET['billet']));
-            $donnees = $req->fetch();
-        ?>
-        <p class="back-link">
-            <a href="index.php">Retour à l'accueil</a>
-        </p>
-
         <div class="news">
             <h2>
                 <?php echo htmlspecialchars($donnees['titre']); ?>
@@ -158,7 +126,7 @@
         <hr />
             <div class="commentaires">
                 <h4>Laissez un commentaire</h4>
-                <form action="send.php" method="post">
+                <form action="chapitre.php?billet=<?= $donnees['id'] ?>#commentaires" method="post">
                     <input type="hidden" name="id_billet" id="id-billet" value="<?php echo $donnees['id']; ?>" />
                     <input type="hidden" name="from_index" value="non" /><br />
                     <div class="input-form text-center">

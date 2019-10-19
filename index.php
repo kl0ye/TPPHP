@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-<?php include("functions.php"); ?>
-=======
 <?php 
     session_start();
     try
@@ -15,7 +12,6 @@
     $reqCom = $bdd->prepare('SELECT pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire DESC LIMIT 0,2');
 
 ?>
->>>>>>> Stashed changes
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,50 +23,6 @@
     </head>
         
     <body>
-<<<<<<< Updated upstream
-        <h1>Billet simple pour l'Alaska</h1>
-        <p class="back-link">
-            <a href="editer.php">Ecrire un nouveau chapitre</a>
-        </p>
- 
-        <?php
-        try
-        {
-            $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-        }
-        catch(Exception $e)
-        {
-                die('Erreur : '.$e->getcommentaire());
-        }
-        $req = $bdd->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet ORDER BY date_creation');
-
-        while ($donnees = $req->fetch())
-        {
-        ?>
-            <div class="news">
-                <h2>
-                    <?php echo htmlspecialchars($donnees['titre']); ?><br />
-                </h2>
-                <p class="date-crea">
-                    <em>le <?php echo $donnees['date_creation_fr']; ?></em>
-                </p>
-                <p class="contenu contenu-hidden">
-                <?php
-                echo nl2br(htmlspecialchars($donnees['contenu']));
-                ?>
-                <br />
-                </p>
-                <a href="chapitre.php?billet=<?php echo $donnees['id']; ?>">Lire la suite..</a>
-                <hr />
-                <div class="commentaires">
-                    <a href="chapitre.php?billet=<?php echo $donnees['id']; ?>/#commentaires">Voir tous les commentaires</a>                        
-                </div>
-            </div>
-        <?php
-        }
-        $req->closeCursor();
-        ?>
-=======
         <?php include('header.php'); ?>
         <div class="row">
             <?php while ($donnees = $req->fetch()) { ?>
@@ -115,6 +67,5 @@
                 </div>
             <?php } ?>
         </div>
->>>>>>> Stashed changes
     </body>
 </html>

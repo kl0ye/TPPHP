@@ -109,7 +109,7 @@
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <a class="m-2" href="editer.php">
+                                    <a class="m-2" href="commentaires.php">
                                         <img src="./img/svg/comment-regular.svg" alt="" class="icon icon-comment-regular" />
                                     </a>
                                 </td>

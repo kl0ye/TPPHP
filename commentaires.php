@@ -8,7 +8,9 @@
     {
         die('Erreur : '.$e->getMessage());
     }
-    $req = $bdd->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet ORDER BY date_creation');
+    $reqCom = $bdd->query('SELECT id, pseudo, commentaire, id_billet, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires ORDER BY date_commentaire');
+
+    $reqDeleteCommentaire = $bdd->prepare('DELETE FROM commentaire WHERE id = ?');
 ?>
 
 <!DOCTYPE html>
@@ -29,33 +31,34 @@
             </p>
             <div class="news row justify-content-center">
                 <h2>
-                    Mon tableau de bord<br />
+                    Gerer les commentaires<br />
                 </h2>
                 <table class="table table-sm">
                     <thead>
                         <tr class="table-list">
-                            <th scope="col"></th>
-                            <th scope="col">Titre</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Pseudo</th>
+                            <th scope="col">Commentaire</th>
                             <th scope="col">Options</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($ligne = $req->fetch()) { ?>
+                        <?php while ($ligne = $reqCom->fetch()) { ?>
                         <tr>
                             <td>
-                                <?= htmlspecialchars($ligne['id']); ?>
+                                <?= htmlspecialchars($ligne['date_commentaire_fr']) ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($ligne['titre']); ?>
+                                <?= htmlspecialchars($ligne['pseudo']) ?>
                             </td>
                             <td>
-                                <a class="eye ml-1" href="chapitre.php?billet=<?= $ligne['id'] ?>" title="Voir l'article">
+                                <?= htmlspecialchars($ligne['commentaire']) ?>
+                            </td>
+                            <td>
+                                <a class="eye ml-1" href="chapitre.php?billet=<?= $ligne['id_billet'] ?>#commentaires" title="Voir le commentaire">
                                     <img src="./img/svg/eye.svg" alt="" class="icon icon-eye" />
                                 </a>
-                                <a class="eye ml-1" href="update.php?billet=<?= $ligne['id'] ?>" title="Editer l'article">
-                                    <img src="./img/svg/pen.svg" alt="" class="icon icon-delete" />
-                                </a>
-                                <a class="delete ml-1" href="delete.php?billet=<?= $ligne['id'] ?>" title="Supprimer l'article">
+                                <a class="delete ml-1" href="delete-com.php?billet=<?= $ligne['id'] ?>" title="Supprimer le commentaire">
                                     <img src="./img/svg/trash.svg" alt="" class="icon icon-delete" />
                                 </a>
                             </td>
@@ -63,12 +66,7 @@
                         <?php } ?>
                     </tbody>
                 </table>
-                <div class="text-right mr-4">
-                    <a class="edit-new ml-2 mr-2" href="editer.php">
-                        <img src="./img/svg/edit.svg" alt="" class="icon icon-edit" />
-                        Rédiger un nouveau chapitre
-                    </a>
-                </div>
+            
             </div>
         </div>
     </body>

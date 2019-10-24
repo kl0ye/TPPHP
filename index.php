@@ -33,7 +33,11 @@
                     <?php if (isset($_SESSION['id'])) { ?>
                     <p class="date-crea">
                         <em>le <?= $donnees['date_creation_fr']; ?></em>
-                        <a class="delete ml-1" href="delete.php?billet=<?= $donnees['id'] ?>">
+                        <a class="editer ml-1" href="update.php?billet=<?= $donnees['id'] ?>" title="Editer l'article">
+                            <img src="./img/svg/pen.svg" alt="" class="icon icon-editer" />
+                            Editer
+                        </a>
+                        <a class="delete ml-1" href="delete.php?billet=<?= $donnees['id'] ?>" title="Supprimer l'article">
                             <img src="./img/svg/trash.svg" alt="" class="icon icon-delete" />
                             Supprimer
                         </a>

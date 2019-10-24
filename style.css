@@ -102,13 +102,34 @@ label {
 .delete {
     color: #da061a;
 }
+.editer {
+    color: #7e62b5;
+}
+.edit-new {
+    color: #939198;
+}
+.delete:hover {
+    color: #da061a!important;
+}
+.editer:hover {
+    color: #7e62b5!important;
+}
+.edit-new:hover {
+    color: #939198!important;
+}
+.eye:hover {
+    text-decoration: none;
+}
 .icon {
     margin-bottom: .2rem;
 }
-.icon-delete {
+.icon-delete, .icon-editer {
     width: .7rem;
 }
-.icon-alert, .icon-comment, .icon-log {
+.icon-eye {
+    width: .9rem;
+}
+.icon-alert, .icon-comment, .icon-log, .icon-edit {
     width: 1rem;
 }
 .icon-user {
@@ -120,7 +141,7 @@ label {
 }
 .icon-file {
     width: 2rem;
-    fill: #7e62b5;
+    fill: #007bff;
 }
 .icon-board, .icon-comment-regular {
     height: 3rem;
@@ -131,9 +152,6 @@ label {
 .icon-alert-delete {
     margin-bottom: .35rem;
     width: 1.5rem;
-}
-.delete:hover {
-    color: #da061a!important;
 }
 .alert-delete-publi {
     font-size: 1.2rem;
@@ -151,6 +169,17 @@ label {
     transform: translateX(-18%);
     margin-top: 2rem;
 }
+.table-list {
+    background-color: #939198;
+    color: #FFF;
+}
+.table tbody tr:nth-of-type(odd) {
+    background-color: #E5E1EC;
+}
+.table tbody tr:hover {
+    background-color: #c6c2cc;
+}
+
 @media screen and (min-width: 1050px) {
 
 }

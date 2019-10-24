@@ -5,7 +5,7 @@
             <img src="./img/svg/log.svg" alt="" class="icon icon-log" />
         </a>
         <?php if (isset($_SESSION['id'])){ ?>
-            <a class="params ml-2 mr-2" href="login.php">
+            <a class="params ml-2 mr-2" href="board.php">
                 <img src="./img/svg/params.svg" alt="" class="icon icon-log" />
             </a>
         <?php } ?>

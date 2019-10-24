@@ -18,52 +18,29 @@
 
     if (!empty($_POST)) 
     {
-        //var_dump($reqCom->fetch());
-        //die();
         $validation = true;
-        $error = "";
 
         if (empty($_POST['pseudo'])) {
             $validation = false;
-            $error = $error . '<div class="alert alert-danger" role="alert">
-                                    <p class="mb-0"> 
-                                        <img src="./img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
-                                        Veuillez saisir un pseudo.
-                                    </p class="alert">
-                                </div>' ;
+            $errorPseudo = 'Veuillez saisir un pseudo' ;
         }
         else if (strlen($_POST['pseudo']) <= 3) {
             $validation = false;
-            $error = $error . '<div class="alert alert-danger" role="alert">
-                                    <p class="mb-0"> 
-                                        <img src="./img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
-                                        Le pseudo doit comporter un minimum de 3 caractères.
-                                    </p class="alert">
-                                </div>' ;
+            $errorPseudo = 'Le pseudo doit comporter un minimum de 3 caractères.' ;
         }
         if (empty($_POST['commentaire'])) {
             $validation = false;
-            $error = $error . '<div class="alert alert-danger" role="alert">
-                                    <p class="mb-0"> 
-                                        <img src="./img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
-                                        Veuillez saisir un commentaire.
-                                    </p class="alert">
-                                </div>' ;
+            $errorCom = 'Veuillez saisir un commentaire.' ;
         }
         else if (strlen($_POST['commentaire']) <= 3) {
             $validation = false;
-            $error = $error . '<div class="alert alert-danger" role="alert">
-                                    <p class="mb-0"> 
-                                        <img src="./img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
-                                        Le commentaire doit comporter un minimum de 3 caractères.
-                                    </p class="alert">
-                                </div>' ;
+            $errorCom = 'Le commentaire doit comporter un minimum de 3 caractères.' ;
         }
         if ($validation) {
             $req = $bdd->prepare('INSERT INTO commentaires (id_billet, pseudo, commentaire, date_commentaire) VALUES(?, ?, ?, NOW())');
             $req->execute(array($_POST['id_billet'], $_POST['pseudo'], $_POST['commentaire']));
             header("Location: chapitre.php?billet=" . $_GET['billet'] ."&send=success");
-           
+
         }
     }
 ?>
@@ -108,19 +85,28 @@
             </div>
             <div class="ancre-last-com" id="success"></div>
             <hr class="mt-0" />
-            <?php 
-                if (isset($error)) { 
-                    echo $error; 
-                } 
-                if (isset($_GET['send'])) {
-                    echo '<div class="alert alert-success" role="alert">
-                                <p class="mb-0"> 
-                                    <img src="./img/svg/check.svg" alt="" class="icon icon-alert mr-2" />
-                                    Votre commentaire a bien été envoyé.
-                                </p class="alert">
-                            </div>';
-                }
-            ?>
+            <?php if (isset($errorPseudo)) { ?>
+                <div class="alert alert-danger" role="alert">
+                    <p class="mb-0"> 
+                        <img src="./img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
+                        <?= $errorPseudo ?>
+                    </p class="alert">
+                </div>
+                <?php } if (isset($errorCom)) { ?>
+                <div class="alert alert-danger" role="alert">
+                    <p class="mb-0"> 
+                        <img src="./img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
+                        <?= $errorCom ?>
+                    </p class="alert">
+                </div>
+                <?php } if (isset($_GET['send'])) { ?>
+                    <div class="alert alert-success" role="alert">
+                        <p class="mb-0"> 
+                            <img src="./img/svg/check.svg" alt="" class="icon icon-alert mr-2" />
+                            Votre commentaire a bien été envoyé.
+                        </p class="alert">
+                    </div>
+                <?php } ?>
             
                 <div class="commentaires">
                     <h4>Laissez un commentaire</h4><br/>

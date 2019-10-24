@@ -8,7 +8,9 @@
     {
         die('Erreur : '.$e->getMessage());
     }
-    $req = $bdd->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet ORDER BY date_creation');
+    $reqCom = $bdd->query('SELECT id, pseudo, commentaire, id_billet, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires ORDER BY date_commentaire');
+
+    $reqDeleteCommentaire = $bdd->prepare('DELETE FROM commentaire WHERE id = ?');
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +30,41 @@
                 <a href="index.php">Retour à la l'accueil</a>
             </p>
             <div class="news row justify-content-center">
-                <table>
-
+                <h2>
+                    Gerer les commentaires<br />
+                </h2>
+                <table class="table table-sm">
+                    <thead>
+                        <tr class="table-list">
+                            <th scope="col">Date</th>
+                            <th scope="col">Pseudo</th>
+                            <th scope="col">Commentaire</th>
+                            <th scope="col">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($ligne = $reqCom->fetch()) { ?>
+                        <tr>
+                            <td>
+                                <?= htmlspecialchars($ligne['date_commentaire_fr']) ?>
+                            </td>
+                            <td>
+                                <?= htmlspecialchars($ligne['pseudo']) ?>
+                            </td>
+                            <td>
+                                <?= htmlspecialchars($ligne['commentaire']) ?>
+                            </td>
+                            <td>
+                                <a class="eye ml-1" href="chapitre.php?billet=<?= $ligne['id_billet'] ?>#commentaires" title="Voir le commentaire">
+                                    <img src="./img/svg/eye.svg" alt="" class="icon icon-eye" />
+                                </a>
+                                <a class="delete ml-1" href="delete-com.php?billet=<?= $ligne['id'] ?>" title="Supprimer le commentaire">
+                                    <img src="./img/svg/trash.svg" alt="" class="icon icon-delete" />
+                                </a>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
                 </table>
             
             </div>

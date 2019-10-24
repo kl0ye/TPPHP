@@ -24,6 +24,7 @@
         {
             if ($isPasswordCorrect) {
                 $_SESSION['id'] = $resultat['id'];
+                $_SESSION['pseudo'] = $resultat['pseudo'];
                 $successLogin = 'Vous êtes connecté !';
             }
             else {

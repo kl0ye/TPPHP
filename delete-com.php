@@ -9,7 +9,7 @@
         die('Erreur : '.$e->getMessage());
     }
 
-    $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet WHERE id = ?');
+    $req = $bdd->prepare('SELECT id, pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id = ?');
     $req->execute(array($_GET['billet']));
     $donnees = $req->fetch();
 
@@ -17,13 +17,13 @@
 
         if ($_GET['oui'] === 'Oui') 
         {
-            $reqDeleteArticle = $bdd->prepare('DELETE FROM billet WHERE id = ?');
+            $reqDeleteArticle = $bdd->prepare('DELETE FROM commentaires WHERE id = ?');
             $reqDeleteArticle->execute([$_GET['id']]);
-            header('Location: board.php');
+            header('Location: commentaires.php');
         }
         else 
         {
-            header('Location: board.php');
+            header('Location: commentaires.php');
         }
     }
 
@@ -41,18 +41,18 @@
         <?php include('header.php'); ?>
         <div class="row">
         <p class="back-link m-2">
-            <a href="index.php">Retour à l'accueil</a>
+            <a href="commentaires.php">Retour à la liste des commentaires</a>
         </p>
             <div class="news">
                 <div class="alert alert-danger" role="alert">
                     <p class="alert-delete-publi mt-3"> 
                         <img src="./img/svg/alert.svg" alt="" class="icon icon-alert-delete mr-2" />
-                        Attention vous êtes sur le point de supprimer cette publication !
+                        Attention vous êtes sur le point de supprimer ce commentaire !
                     </p class="alert">
                 </div>
                 <div class="confirm-delete text-center alert alert-secondary" role="alert">
-                    <form action="delete.php" method="get">
-                        <h5 class="mb-3 ">Confirmer la suppression de cette publication ?</h5>
+                    <form action="delete-com.php" method="get">
+                        <h5 class="mb-3 ">Confirmer la suppression de ce commentaire ?</h5>
                         <div class="input-form text-center">
                             <input type="hidden" name="id" id="id" value="<?= $donnees['id'] ?>" />
                             <input type="submit" class="btn btn-light" name="oui" id="oui" value="Oui" />
@@ -62,15 +62,13 @@
                 </div>
                 <hr />
                 <h2>
-                    <?= htmlspecialchars($donnees['titre']) ?>
+                    Apperçu du commentaire de <?= htmlspecialchars($donnees['pseudo']) ?> :
                 </h2>
-                <p class="date-crea">
-                    <em>le <?= $donnees['date_creation_fr'] ?></em>
-                </p>
-            
-                <p class="contenu">
-                <?= nl2br(htmlspecialchars($donnees['contenu'])) ?>
-                </p>
+
+                <div class="show-commentaires">
+                    <p><strong><?= htmlspecialchars($donnees['pseudo']); ?></strong> le <?= $donnees['date_commentaire_fr']; ?></p>
+                    <p class="ml-3"><?= nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
+                </div><br />
             </div>
         </div>
     </body>

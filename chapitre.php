@@ -128,7 +128,11 @@
                         <input type="hidden" name="id_billet" id="id-billet" value="<?= $_GET['billet'] ?>" />
                         <div class="input-form text-center">
                             <label for="auteur">Pseudo</label>
-                            <input type="text" class="form-control radius" name="pseudo" id="pseudo" /><br />
+                            <?php if (isset($_SESSION['id'])) { ?>
+                                <input type="text" class="form-control radius" name="pseudo" id="pseudo" value="<?= $_SESSION['pseudo'] ?>" /><br />
+                            <?php } else { ?>
+                                <input type="text" class="form-control radius" name="pseudo" id="pseudo" /><br />
+                            <?php } ?>
                             <label for="commentaire">Commentaire</label>
                             <textarea name="commentaire" class="form-control radius" id="commentaire"></textarea>
                         </div>

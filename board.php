@@ -28,21 +28,47 @@
                 <a href="index.php">Retour à la l'accueil</a>
             </p>
             <div class="news row justify-content-center">
-                <table>
-                    <?php while ($ligne = $req->fetch()) { ?>
-                    <tr>
-                        <?php while ($donnees = $req->fetch()) { ?>
-                        <td>
-                            <?= htmlspecialchars($donnees['id']); ?><br />
-                        </td>
-                        <td>
-                            <?= htmlspecialchars($donnees['titre']); ?><br />
-                        </td>
-                            <?php } ?>
-                    </tr>
-                    <?php } ?>
+                <h2>
+                    Mon tableau de bord<br />
+                </h2>
+                <table class="table table-sm">
+                    <thead>
+                        <tr class="table-list">
+                            <th scope="col"></th>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($ligne = $req->fetch()) { ?>
+                        <tr>
+                            <td>
+                                <?= htmlspecialchars($ligne['id']); ?>
+                            </td>
+                            <td>
+                                <?= htmlspecialchars($ligne['titre']); ?>
+                            </td>
+                            <td>
+                                <a class="eye ml-1" href="chapitre.php?billet=<?= $ligne['id'] ?>" title="Voir l'article">
+                                    <img src="./img/svg/eye.svg" alt="" class="icon icon-eye" />
+                                </a>
+                                <a class="eye ml-1" href="update.php?billet=<?= $ligne['id'] ?>" title="Editer l'article">
+                                    <img src="./img/svg/pen.svg" alt="" class="icon icon-delete" />
+                                </a>
+                                <a class="delete ml-1" href="delete.php?billet=<?= $ligne['id'] ?>" title="Supprimer l'article">
+                                    <img src="./img/svg/trash.svg" alt="" class="icon icon-delete" />
+                                </a>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
                 </table>
-            
+                <div class="text-right mr-4">
+                    <a class="edit-new ml-2 mr-2" href="editer.php">
+                        <img src="./img/svg/edit.svg" alt="" class="icon icon-edit" />
+                        Rédiger un nouveau chapitre
+                    </a>
+                </div>
             </div>
         </div>
     </body>

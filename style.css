@@ -15,9 +15,9 @@ h1, h2, h4 {
 h1 {
     color:white;
     font-size: 4rem!important;
-    border: 2px dashed;
     padding: 3rem 5rem;
     background-color: #ffffff3b;
+    width: 30rem;
 }
 h2 {
     margin-bottom: 1.5rem!important;
@@ -60,10 +60,10 @@ header {
     filter: hue-rotate(45deg) brightness(0.35) blur(0.5px);
 }
 .other {
-    margin: 2rem 12rem 0 12rem!important;
+    margin: 2rem auto 0 auto!important;
 }
 .accueil {
-    margin: 10rem 12rem 6.5rem 12rem!important;
+    margin: 10rem auto 6.5rem auto!important;
 }
 .connect:hover {
     text-decoration: none;
@@ -159,13 +159,13 @@ header {
     box-shadow: none!important;
 }
 .delete {
-    color: #da061a;
+    color: #da061a!important;
 }
 .editer {
-    color: #505f8a;
+    color: #505f8a!important;
 }
 .edit-new {
-    color: #505f8a;
+    color: #505f8a!important;
 }
 .delete:hover {
     color: #da061a!important;
@@ -239,10 +239,5 @@ header {
 }
 
 @media screen and (min-width: 1045px) {
-    .accueil {
-        margin-bottom: 11rem!important;
-    }
-    .other {
-        margin: 4rem 12rem 3rem 12rem!important;
-    }
+
 }

@@ -33,6 +33,22 @@
             <div class="news news-accueil">
                 <h2>Bienvenue<br /></h2>
                 <hr class="mt-0 separator" />
+
+                <div class="action-accueil">
+                    <table class="action-accueil">
+                        <tr>
+                            <td class="text-center">
+                                <h4>Voir tous les chapitres</h4>
+                            </td>
+                            <td class="text-center">
+                                <h4>Le plus commente</h4>
+                            </td>
+                            <td class="text-center">
+                                <h4>Le plus recent</h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 
                 <div class="img-jean">
                     <div class="bio">

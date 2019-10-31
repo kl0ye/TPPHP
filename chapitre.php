@@ -65,10 +65,10 @@
                 <h2>
                     <?= htmlspecialchars($donnees['titre']) ?>
                 </h2>
+                <hr class="mt-0 separator" />
                 <p class="date-crea">
                     <em>le <?= $donnees['date_creation_fr'] ?></em>
                 </p>
-            
                 <p class="contenu">
                     <?= nl2br(htmlspecialchars($donnees['contenu'])) ?>
                 </p>
@@ -78,7 +78,7 @@
             <div class="color-box-commentaires">
             <?php while ($commentaire = $reqCom->fetch()) { ?>
                 <div class="show-commentaires">
-                    <p><strong><?= htmlspecialchars($commentaire['pseudo']); ?></strong> le <?= $commentaire['date_commentaire_fr']; ?></p>
+                    <p><strong><?= htmlspecialchars($commentaire['pseudo']); ?></strong> <em class="small-date">le <?= $commentaire['date_commentaire_fr']; ?></em></p>
                     <p class="ml-3"><?= nl2br(htmlspecialchars($commentaire['commentaire'])); ?></p>
                 </div><br />
             <?php } ?>

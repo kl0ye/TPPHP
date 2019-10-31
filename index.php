@@ -10,6 +10,7 @@
     }
     $req = $bdd->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet ORDER BY date_creation');
     $reqCom = $bdd->prepare('SELECT pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire DESC LIMIT 0,2');
+    $accueil = true;
 
 ?>
 <!DOCTYPE html>
@@ -30,6 +31,7 @@
                     <h2>
                         <?= htmlspecialchars($donnees['titre']); ?><br />
                     </h2>
+                    <hr class="mt-0 separator" />
                     <?php if (isset($_SESSION['id'])) { ?>
                     <p class="date-crea">
                         <em>le <?= $donnees['date_creation_fr']; ?></em>
@@ -58,7 +60,7 @@
                         ?>
                             <div class="color-box-commentaires">
                                 <div class="show-commentaires index-commentaire">
-                                    <p class="mb-1"><strong><?= htmlspecialchars($commentaire['pseudo']) ?></strong> le <?= $commentaire['date_commentaire_fr'] ?></p>
+                                    <p class="mb-1"><strong><?= htmlspecialchars($commentaire['pseudo']) ?></strong> <em class="small-date">le <?= $commentaire['date_commentaire_fr']; ?></em></p>
                                     <p class="ml-3 mb-1"><?= nl2br(htmlspecialchars($commentaire['commentaire'])) ?></p>
                                 </div><br />
                             </div>

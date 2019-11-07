@@ -1,20 +1,16 @@
 <?php
     session_start();
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
 
-    $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet WHERE id = ?');
-    $req->execute(array($_GET['billet']));
-    $donnees = $req->fetch();
+    require ('./Model/Billet.php');
+    require ('./Model/BilletsManager.php');
+    require ('./Model/Commentaire.php');
+    require ('./Model/CommentairesManager.php');
+    
+    $billetManager = new BilletsManager();   
+    $billet = $billetManager->get($_GET['billet']);
 
-    $reqCom = $bdd->prepare('SELECT pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire');
-    $reqCom->execute(array($_GET['billet']));
+    $commentaireManager = new CommentairesManager();   
+
 
     if (!empty($_POST)) 
     {
@@ -63,25 +59,20 @@
 
             <div class="news">
                 <h2>
-                    <?= htmlspecialchars($donnees['titre']) ?>
+                    <?= htmlspecialchars($billet->getTitre()) ?>
                 </h2>
                 <hr class="mt-0 separator" />
                 <p class="date-crea">
-                    <em>le <?= $donnees['date_creation_fr'] ?></em>
+                    <em>le <?= $billet->getDateCreation() ?></em>
                 </p>
                 <p class="contenu">
-                    <?= nl2br(htmlspecialchars($donnees['contenu'])) ?>
+                    <?= nl2br(htmlspecialchars($billet->getContenu())) ?>
                 </p>
             </div>
             <div class="news" id="commentaires">
             <h2>Commentaires</h2>
             <div class="color-box-commentaires">
-            <?php while ($commentaire = $reqCom->fetch()) { ?>
-                <div class="show-commentaires">
-                    <p><strong><?= htmlspecialchars($commentaire['pseudo']); ?></strong> <em class="small-date">le <?= $commentaire['date_commentaire_fr']; ?></em></p>
-                    <p class="ml-3"><?= nl2br(htmlspecialchars($commentaire['commentaire'])); ?></p>
-                </div><br />
-            <?php } ?>
+            <?php $commentaire = $commentaireManager->getAllCommentaire($_GET['billet']); ?>
             </div>
             <div class="ancre-last-com" id="success"></div>
             <hr class="mt-0" />

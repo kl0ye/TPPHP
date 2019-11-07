@@ -1,29 +1,17 @@
 <?php
     session_start();
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-            die('Erreur : '.$e->getMessage());
-    }
-    $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet WHERE id = ?');
-    $req->execute(array($_GET['billet']));
-    $donnees = $req->fetch();
+    require ('./Model/Billet.php');
+    require ('./Model/BilletsManager.php');
+
     if (isset($_POST['contenu']) && isset($_POST['titre'])) 
     {
-        var_dump("coucou");
-        var_dump(($_POST['titre']));
-        var_dump(($_POST['contenu']));
-        $reqUpdate = $bdd->prepare('UPDATE billet SET titre = :titre , contenu = :contenu WHERE billet . id = :id');
-        $reqUpdate->execute([
-                'titre' => $_POST['titre'], 
-                'contenu' => $_POST['contenu'], 
-                'id' => $_POST['id_billet']
-            ]);
+        $reqUpdateArticle = new BilletsManager();   
+        $updateArticle = $reqUpdateArticle->update($_POST['titre'], $_POST['contenu'], $_POST['id_billet']);
         header('Location: chapitre.php?billet=' . $_POST['id_billet']);
     }
+
+    $billetManager = new BilletsManager();   
+    $billet = $billetManager->get($_GET['billet']);
    
 ?>
 <!DOCTYPE html>
@@ -48,11 +36,11 @@
                         <input type="hidden" name="id_billet" id="id-billet" value="<?= $_GET['billet'] ?>" />
                         <div class="input-form mb-4 text-center">
                             <label class="label-editor" for="titre">Titre</label>
-                            <input type="text" class="form-control radius" name="titre" id="titre" value="<?= $donnees['titre'] ?>" required />
+                            <input type="text" class="form-control radius" name="titre" id="titre" value="<?= $billet->getTitre() ?>" required />
                         </div>  
                         <div class="input-form mb-4 text-center">
                             <label class="label-editor" for="contenu">Contenu</label>
-                            <textarea class="form-control radius" rows="15" name="contenu" id="contenu" minlength="250" required><?= $donnees['contenu'] ?></textarea>
+                            <textarea class="form-control radius" rows="15" name="contenu" id="contenu" minlength="250" required><?= $billet->getContenu() ?></textarea>
                         </div>    
                         <input type="submit" class=" btn-publi btn-lg btn-block" value="Mettre à jour" />
                     </form>

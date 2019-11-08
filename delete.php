@@ -1,24 +1,15 @@
 <?php
     session_start();
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
 
-    $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet WHERE id = ?');
-    $req->execute(array($_GET['billet']));
-    $donnees = $req->fetch();
+    require ('./Model/Billet.php');
+    require ('./Model/BilletsManager.php');
 
     if (!empty($_GET['id'])) {
 
         if ($_GET['oui'] === 'Oui') 
         {
-            $reqDeleteArticle = $bdd->prepare('DELETE FROM billet WHERE id = ?');
-            $reqDeleteArticle->execute([$_GET['id']]);
+            $reqDeleteArticle = new BilletsManager();   
+            $deleteArticle = $reqDeleteArticle->delete($_GET['id']);
             header('Location: board.php');
         }
         else 
@@ -26,6 +17,9 @@
             header('Location: board.php');
         }
     }
+
+    $billetManager = new BilletsManager();   
+    $billet = $billetManager->get($_GET['billet']);
 
 ?>
 <!DOCTYPE html>
@@ -54,7 +48,7 @@
                     <form action="delete.php" method="get">
                         <h5 class="mb-3 ">Confirmer la suppression de cette publication ?</h5>
                         <div class="input-form text-center">
-                            <input type="hidden" name="id" id="id" value="<?= $donnees['id'] ?>" />
+                            <input type="hidden" name="id" id="id" value="<?= $billet->getId() ?>" />
                             <input type="submit" class="btn btn-light" name="oui" id="oui" value="Oui" />
                             <input type="submit" class="btn btn-secondary" name="non" id="non" value="Non" />
                         </div>
@@ -62,14 +56,14 @@
                 </div>
                 <hr />
                 <h2>
-                    <?= htmlspecialchars($donnees['titre']) ?>
+                    <?= $billet->getTitre() ?>
                 </h2>
                 <p class="date-crea">
-                    <em>le <?= $donnees['date_creation_fr'] ?></em>
+                    <em>le <?= $billet->getDateCreation() ?></em>
                 </p>
             
                 <p class="contenu">
-                <?= nl2br(htmlspecialchars($donnees['contenu'])) ?>
+                <?= $billet->getContenu() ?>
                 </p>
             </div>
         </div>

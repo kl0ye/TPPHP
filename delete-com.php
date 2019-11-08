@@ -1,24 +1,14 @@
 <?php
     session_start();
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
-
-    $req = $bdd->prepare('SELECT id, pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id = ?');
-    $req->execute(array($_GET['billet']));
-    $donnees = $req->fetch();
+    require ('./Model/Commentaire.php');
+    require ('./Model/CommentairesManager.php');
 
     if (!empty($_GET['id'])) {
 
         if ($_GET['oui'] === 'Oui') 
         {
-            $reqDeleteArticle = $bdd->prepare('DELETE FROM commentaires WHERE id = ?');
-            $reqDeleteArticle->execute([$_GET['id']]);
+            $reqDeleteCom = new CommentairesManager();
+            $reqDeleteCom->delete($_GET['id']);
             header('Location: commentaires.php');
         }
         else 
@@ -26,6 +16,9 @@
             header('Location: commentaires.php');
         }
     }
+    
+    $commentaireManager = new CommentairesManager();   
+    $commentaire = $commentaireManager->get($_GET['billet']);
 
 ?>
 <!DOCTYPE html>
@@ -54,7 +47,7 @@
                     <form action="delete-com.php" method="get">
                         <h5 class="mb-3 ">Confirmer la suppression de ce commentaire ?</h5>
                         <div class="input-form text-center">
-                            <input type="hidden" name="id" id="id" value="<?= $donnees['id'] ?>" />
+                            <input type="hidden" name="id" id="id" value="<?= $commentaire->getId() ?>" />
                             <input type="submit" class="btn btn-light" name="oui" id="oui" value="Oui" />
                             <input type="submit" class="btn btn-secondary" name="non" id="non" value="Non" />
                         </div>
@@ -62,12 +55,13 @@
                 </div>
                 <hr />
                 <h2>
-                    Apperçu du commentaire de <?= htmlspecialchars($donnees['pseudo']) ?> :
+                    Apperçu du commentaire de <?= $commentaire->getPseudo() ?> :
                 </h2>
-
                 <div class="show-commentaires">
-                    <p><strong><?= htmlspecialchars($donnees['pseudo']); ?></strong> le <?= $donnees['date_commentaire_fr']; ?></p>
-                    <p class="ml-3"><?= nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
+                    <p>
+                        <strong><?= $commentaire->getPseudo() ?></strong> le <?= $commentaire->getDateCommentaire() ?>
+                    </p>
+                    <p class="ml-3"><?= $commentaire->getCommentaire() ?></p>
                 </div><br />
             </div>
         </div>

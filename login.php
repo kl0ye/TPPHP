@@ -1,30 +1,22 @@
 <?php 
     session_start();
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
-    if (!empty($_POST)) {
-        $req = $bdd->prepare('SELECT id, pseudo, pass FROM users WHERE pseudo = :pseudo');
-        $req->execute([
-            'pseudo' => $_POST['pseudo']
-        ]);
-        $resultat = $req->fetch();
-        $isPasswordCorrect = password_verify($_POST['pass'], $resultat['pass']);
+    require ('./Model/User.php');
+    require ('./Model/UserManager.php');
 
-        if (!$resultat)
+    if (!empty($_POST)) {
+        $userManager = new UserManager();
+        $user = $userManager->get($_POST['pseudo']);
+        $isPasswordCorrect = password_verify($_POST['pass'], $user->getPass());
+
+        if (!$user)
         {
             $errorLogin =  'Mauvais identifiant ou mot de passe !';
         }
         else
         {
             if ($isPasswordCorrect) {
-                $_SESSION['id'] = $resultat['id'];
-                $_SESSION['pseudo'] = $resultat['pseudo'];
+                $_SESSION['id'] = $user->getId();
+                $_SESSION['pseudo'] = $user->getPseudo();
                 $successLogin = 'Vous êtes connecté !';
             }
             else {
@@ -40,11 +32,8 @@
         setcookie('pass_hache', '');
     }
     if (!empty($_SESSION['id'])) {
-        $req = $bdd->prepare('SELECT id, pseudo, pass FROM users WHERE id = :id');
-        $req->execute([
-            'id' => $_SESSION['id']
-        ]);
-        $resultat = $req->fetch();
+        $userManager = new UserManager();
+        $user = $userManager->get($_SESSION['pseudo']);
     }
 ?>
 
@@ -100,7 +89,7 @@
                         <div class="text-center user m-3">
                             <img src="./img/svg/user.svg" alt="" class="icon icon-user align-center p-1" />
                         </div>
-                        <h5 class="text-center">Ravie de vous revoir, <?= $resultat['pseudo'] ?></h5>
+                        <h5 class="text-center">Ravie de vous revoir, <?= $user->getPseudo() ?></h5>
                         <p class="text-center m-3">Que souhaitez-vous faire ?</p>
                         <table class="action">
                             <tr>

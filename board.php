@@ -1,14 +1,10 @@
 <?php 
     session_start();
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
-    $req = $bdd->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet ORDER BY date_creation');
+    require ('./Model/Billet.php');
+    require ('./Model/BilletsManager.php');
+    
+    $billetManager = new BilletsManager();   
+    $billets = $billetManager->getAllBillet();
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +24,8 @@
                 <a href="index.php">Retour à la l'accueil</a>
             </p>
             <div class="news row justify-content-center">
-                <h2>
-                    Mon tableau de bord<br />
+                <h2 class="mb-4">
+                    Mon tableau de bord
                 </h2>
                 <table class="table table-sm">
                     <thead>
@@ -40,22 +36,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($ligne = $req->fetch()) { ?>
+                        <?php foreach ($billets as $billet) { ?>
                         <tr>
                             <td>
-                                <?= htmlspecialchars($ligne['id']); ?>
+                                <?= $billet->getId() ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($ligne['titre']); ?>
+                                <?= $billet->getTitre() ?>
                             </td>
                             <td>
-                                <a class="eye ml-1" href="chapitre.php?billet=<?= $ligne['id'] ?>" title="Voir l'article">
+                                <a class="eye ml-1" href="chapitre.php?billet=<?= $billet->getId() ?>" title="Voir l'article">
                                     <img src="./img/svg/eye.svg" alt="" class="icon icon-eye" />
                                 </a>
-                                <a class="eye ml-1" href="update.php?billet=<?= $ligne['id'] ?>" title="Editer l'article">
+                                <a class="eye ml-1" href="update.php?billet=<?= $billet->getId() ?>" title="Editer l'article">
                                     <img src="./img/svg/pen.svg" alt="" class="icon icon-delete" />
                                 </a>
-                                <a class="delete ml-1" href="delete.php?billet=<?= $ligne['id'] ?>" title="Supprimer l'article">
+                                <a class="delete ml-1" href="delete.php?billet=<?= $billet->getId() ?>" title="Supprimer l'article">
                                     <img src="./img/svg/trash.svg" alt="" class="icon icon-delete" />
                                 </a>
                             </td>

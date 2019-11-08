@@ -24,6 +24,15 @@
             ]);
         }
 
+        public function getAfterAdd($contenu) 
+        {
+            $req = $this->db->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet WHERE contenu = :contenu');
+            $req->execute([
+                'contenu' => $contenu
+            ]);
+            return new Billet($req->fetch());
+        }
+
         public function get($id) 
         {
             $req = $this->db->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet WHERE id = :id');

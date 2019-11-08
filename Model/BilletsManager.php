@@ -33,6 +33,15 @@
             return new Billet($req->fetch());
         }
 
+        public function getAllBillet() {
+            $data = [];
+            $req = $this->db->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet ORDER BY date_creation');
+            while ($liste = $req->fetch()) {
+                $data[] = new Billet($liste);
+            }
+            return $data;
+        }
+
         public function update($titre, $contenu, $id) 
         {
             $reqUpdate =  $this->db->prepare('UPDATE billet SET titre = :titre , contenu = :contenu WHERE billet . id = :id');

@@ -24,25 +24,40 @@
         }
 
         public function getAllCommentaire($idBillet) {
+            $data = [];
             $req = $this->db->prepare('SELECT id, id_billet, pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id_billet = :id_billet ORDER BY date_commentaire');
             $req->execute([
                 'id_billet' => $idBillet
             ]);
             while ($liste = $req->fetch()) {
-                $commentaire = new Commentaire($liste);
-                echo '<div class="show-commentaires">
-                <p>
-                    <strong> ' . htmlspecialchars($commentaire->getPseudo()) .' </strong> 
-                    <em class="small-date">le '. $commentaire->getDateCommentaire().'</em>
-                </p>
-                <p class="ml-3">'.nl2br(htmlspecialchars($commentaire->getCommentaire())).'</p>
-               </div><br />';
+                $data[] = new Commentaire($liste);
             }
-            /*while ($commentaire = $req->fetch()) {
-                $commentaire = new Commentaire($commentaire);
-                var_dump($commentaire);
-            }*/
+            return $data;
         }
 
+        public function getListCommentaire() {
+            $data = [];
+            $req = $this->db->query('SELECT id, id_billet, pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires ORDER BY date_commentaire');
+            while ($liste = $req->fetch()) {
+                $data[] = new Commentaire($liste);
+            }
+            return $data;
+        }
 
+        public function add($idBillet, $pseudo, $commentaire) {
+            $req =  $this->db->prepare('INSERT INTO commentaires (id_billet, pseudo, commentaire, date_commentaire) VALUES(:id_billet, :pseudo, :commentaire, NOW())');
+            $req->execute([
+                'id_billet' => $idBillet,
+                'pseudo' => $pseudo,
+                'commentaire' => $commentaire
+                ]);
+        }
+
+        public function delete($id)
+        {
+            $reqDeleteCom = $this->db->prepare('DELETE FROM commentaires WHERE id = :id');
+            $reqDeleteCom->execute([
+                'id' => $id
+            ]);
+        }
     }

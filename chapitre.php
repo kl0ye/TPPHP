@@ -10,7 +10,7 @@
     $billet = $billetManager->get($_GET['billet']);
 
     $commentaireManager = new CommentairesManager();   
-
+    $commentaires = $commentaireManager->getAllCommentaire($_GET['billet']);
 
     if (!empty($_POST)) 
     {
@@ -33,8 +33,8 @@
             $errorCom = 'Le commentaire doit comporter un minimum de 3 caractères.' ;
         }
         if ($validation) {
-            $req = $bdd->prepare('INSERT INTO commentaires (id_billet, pseudo, commentaire, date_commentaire) VALUES(?, ?, ?, NOW())');
-            $req->execute(array($_POST['id_billet'], $_POST['pseudo'], $_POST['commentaire']));
+            $commentaireManager = new CommentairesManager();   
+            $addCommentaires = $commentaireManager->add($_POST['id_billet'], $_POST['pseudo'], $_POST['commentaire']);
             header("Location: chapitre.php?billet=" . $_GET['billet'] ."&send=success");
 
         }
@@ -72,7 +72,16 @@
             <div class="news" id="commentaires">
             <h2>Commentaires</h2>
             <div class="color-box-commentaires">
-            <?php $commentaire = $commentaireManager->getAllCommentaire($_GET['billet']); ?>
+            <?php foreach ($commentaires as $commentaire) { ?>
+                <div class="show-commentaires mb-5">
+                    <p>
+                        <strong> <?= $commentaire->getPseudo() ?> </strong> 
+                        <em class="small-date">le <?= $commentaire->getDateCommentaire() ?></em>
+                    </p>
+                    <p class="ml-3"><?= $commentaire->getCommentaire() ?></p>
+               </div>
+                
+            <?php } ?>
             </div>
             <div class="ancre-last-com" id="success"></div>
             <hr class="mt-0" />

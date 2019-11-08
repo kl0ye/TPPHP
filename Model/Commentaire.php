@@ -33,16 +33,16 @@
         //Getter
         
         public function getId() {
-            return $this->id;
+            return htmlspecialchars($this->id);
         }
         public function getIdBillet() {
-            return $this->id_billet;
+            return htmlspecialchars($this->id_billet);
         }
         public function getPseudo() {
-            return $this->pseudo;
+            return htmlspecialchars($this->pseudo);
         }
         public function getCommentaire() {
-            return $this->commentaire;
+            return nl2br(htmlspecialchars($this->commentaire));
         }
         public function getDateCommentaire() {
             return $this->date_commentaire;

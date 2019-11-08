@@ -27,13 +27,13 @@
         }
         
         public function getId() {
-            return $this->id;
+            return htmlspecialchars($this->id);
         }
         public function getTitre() {
-            return $this->titre;
+            return htmlspecialchars($this->titre);
         }
         public function getContenu() {
-            return $this->contenu;
+            return htmlspecialchars($this->contenu);
         }
         public function getDateCreation() {
             return $this->date_creation;

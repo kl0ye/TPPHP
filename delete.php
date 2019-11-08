@@ -56,14 +56,14 @@
                 </div>
                 <hr />
                 <h2>
-                    <?= htmlspecialchars($billet->getTitre()) ?>
+                    <?= $billet->getTitre() ?>
                 </h2>
                 <p class="date-crea">
                     <em>le <?= $billet->getDateCreation() ?></em>
                 </p>
             
                 <p class="contenu">
-                <?= nl2br(htmlspecialchars($billet->getContenu())) ?>
+                <?= $billet->getContenu() ?>
                 </p>
             </div>
         </div>

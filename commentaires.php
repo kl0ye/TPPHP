@@ -1,16 +1,10 @@
 <?php 
     session_start();
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
-    $reqCom = $bdd->query('SELECT id, pseudo, commentaire, id_billet, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires ORDER BY date_commentaire');
+    require ('./Model/Commentaire.php');
+    require ('./Model/CommentairesManager.php');
 
-    $reqDeleteCommentaire = $bdd->prepare('DELETE FROM commentaire WHERE id = ?');
+    $commentaireManager = new CommentairesManager();   
+    $commentaires = $commentaireManager->getListCommentaire();
 ?>
 
 <!DOCTYPE html>
@@ -43,22 +37,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($ligne = $reqCom->fetch()) { ?>
+                        <?php foreach ($commentaires as $commentaire) { ?>
                         <tr>
                             <td>
-                                <?= htmlspecialchars($ligne['date_commentaire_fr']) ?>
+                                <?= $commentaire->getDateCommentaire() ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($ligne['pseudo']) ?>
+                                <?= $commentaire->getPseudo() ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($ligne['commentaire']) ?>
+                                <?= $commentaire->getCommentaire() ?>
                             </td>
                             <td>
-                                <a class="eye ml-1" href="chapitre.php?billet=<?= $ligne['id_billet'] ?>#commentaires" title="Voir le commentaire">
+                                <a class="eye ml-1" href="chapitre.php?billet=<?= $commentaire->getIdBillet() ?>#commentaires" title="Voir le commentaire">
                                     <img src="./img/svg/eye.svg" alt="" class="icon icon-eye" />
                                 </a>
-                                <a class="delete ml-1" href="delete-com.php?billet=<?= $ligne['id'] ?>" title="Supprimer le commentaire">
+                                <a class="delete ml-1" href="delete-com.php?billet=<?= $commentaire->getIdBillet() ?>" title="Supprimer le commentaire">
                                     <img src="./img/svg/trash.svg" alt="" class="icon icon-delete" />
                                 </a>
                             </td>

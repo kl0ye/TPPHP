@@ -1,54 +1,15 @@
-<?php 
-    session_start();
-    require ('./Model/User.php');
-    require ('./Model/UserManager.php');
-
-    if (!empty($_POST)) {
-        $userManager = new UserManager();
-        $user = $userManager->get($_POST['pseudo']);
-        $isPasswordCorrect = password_verify($_POST['pass'], $user->getPass());
-
-        if (!$user)
-        {
-            $errorLogin =  'Mauvais identifiant ou mot de passe !';
-        }
-        else
-        {
-            if ($isPasswordCorrect) {
-                $_SESSION['id'] = $user->getId();
-                $_SESSION['pseudo'] = $user->getPseudo();
-                $successLogin = 'Vous êtes connecté !';
-            }
-            else {
-                $errorLogin = 'Mauvais identifiant ou mot de passe !';
-            }
-        }
-    }
-    if (!empty($_GET)) {
-        $_SESSION = array();
-        session_destroy();
-        
-        setcookie('login', '');
-        setcookie('pass_hache', '');
-    }
-    if (!empty($_SESSION['id'])) {
-        $userManager = new UserManager();
-        $user = $userManager->get($_SESSION['pseudo']);
-    }
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <title>Billet simple pour l'Alaska</title>
-        <link href="style.css" rel="stylesheet" />
+        <link href="./public/css/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         
     </head>
         
     <body>
-        <?php include('header.php'); ?>
+        <?php require('header.php'); ?>
         <div class="row">
             <p class=" mt-2 ml-2">
                 <a href="index.php">Retour à la l'accueil</a>
@@ -61,7 +22,7 @@
                             <?php if (isset($errorLogin)) { ?>
                                 <div class="alert alert-danger" role="alert">
                                     <p class="mb-0"> 
-                                        <img src="./img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
+                                        <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
                                         <?= $errorLogin ?>
                                     </p class="alert">
                                 </div>
@@ -81,31 +42,31 @@
                             <h2 class="mb-3">Connexion</h2>
                             <div class="alert alert-success" role="alert">
                                 <p class="mb-0"> 
-                                <img src="./img/svg/check.svg" alt="" class="icon icon-alert mr-2" />
+                                <img src="./public/img/svg/check.svg" alt="" class="icon icon-alert mr-2" />
                                 <?= $successLogin ?>
                                 </p class="alert">
                             </div>
                         <?php } ?>
                         <div class="text-center user m-3">
-                            <img src="./img/svg/user.svg" alt="" class="icon icon-user align-center p-1" />
+                            <img src="./public/img/svg/user.svg" alt="" class="icon icon-user align-center p-1" />
                         </div>
                         <h5 class="text-center">Ravie de vous revoir, <?= $user->getPseudo() ?></h5>
                         <p class="text-center m-3">Que souhaitez-vous faire ?</p>
                         <table class="action">
                             <tr>
                                 <td class="text-center">
-                                    <a class="file ml-2 mr-2" href="editer.php">
-                                        <img src="./img/svg/file.svg" alt="" class="icon icon-file" />
+                                    <a class="file ml-2 mr-2" href="index.php?page=editer">
+                                        <img src="./public/img/svg/file.svg" alt="" class="icon icon-file" />
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <a class="m-2" href="commentaires.php">
-                                        <img src="./img/svg/comment-regular.svg" alt="" class="icon icon-comment-regular" />
+                                    <a class="m-2" href="index.php?page=commentaires">
+                                        <img src="./public/img/svg/comment-regular.svg" alt="" class="icon icon-comment-regular" />
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <a class="board ml-2 mr-2" href="board.php">
-                                        <img src="./img/svg/board.svg" alt="" class="icon icon-board" />
+                                    <a class="board ml-2 mr-2" href="index.php?page=board">
+                                        <img src="./public/img/svg/board.svg" alt="" class="icon icon-board" />
                                     </a>
                                 </td>
                             </tr>

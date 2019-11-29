@@ -23,6 +23,14 @@
             return new Commentaire($req->fetch());
         }
 
+        public function getOne($id) {
+            $req = $this->db->prepare('SELECT id, id_billet, pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id = :id');
+            $req->execute([
+                'id' => $id
+            ]);
+            return new Commentaire($req->fetch());
+        }
+
         public function getAllCommentaire($idBillet) {
             $data = [];
             $req = $this->db->prepare('SELECT id, id_billet, pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id_billet = :id_billet ORDER BY date_commentaire');

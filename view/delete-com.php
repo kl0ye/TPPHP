@@ -1,37 +1,14 @@
-<?php
-    session_start();
-    require ('./Model/Commentaire.php');
-    require ('./Model/CommentairesManager.php');
-
-    if (!empty($_GET['id'])) {
-
-        if ($_GET['oui'] === 'Oui') 
-        {
-            $reqDeleteCom = new CommentairesManager();
-            $reqDeleteCom->delete($_GET['id']);
-            header('Location: commentaires.php');
-        }
-        else 
-        {
-            header('Location: commentaires.php');
-        }
-    }
-    
-    $commentaireManager = new CommentairesManager();   
-    $commentaire = $commentaireManager->get($_GET['billet']);
-
-?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <title>Billet simple pour l'Alaska</title>
-        <link href="style.css" rel="stylesheet" />
+        <link href="./public/css/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
         
     <body>
-        <?php include('header.php'); ?>
+        <?php require('./view/header.php'); ?>
         <div class="row">
         <p class="back-link m-2">
             <a href="commentaires.php">Retour à la liste des commentaires</a>
@@ -39,7 +16,7 @@
             <div class="news">
                 <div class="alert alert-danger" role="alert">
                     <p class="alert-delete-publi mt-3"> 
-                        <img src="./img/svg/alert.svg" alt="" class="icon icon-alert-delete mr-2" />
+                        <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert-delete mr-2" />
                         Attention vous êtes sur le point de supprimer ce commentaire !
                     </p class="alert">
                 </div>

@@ -1,46 +1,22 @@
-<?php
-    session_start();
-
-    require ('./Model/Billet.php');
-    require ('./Model/BilletsManager.php');
-
-    if (!empty($_GET['id'])) {
-
-        if ($_GET['oui'] === 'Oui') 
-        {
-            $reqDeleteArticle = new BilletsManager();   
-            $deleteArticle = $reqDeleteArticle->delete($_GET['id']);
-            header('Location: board.php');
-        }
-        else 
-        {
-            header('Location: board.php');
-        }
-    }
-
-    $billetManager = new BilletsManager();   
-    $billet = $billetManager->get($_GET['billet']);
-
-?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <title>Billet simple pour l'Alaska</title>
-        <link href="style.css" rel="stylesheet" />
+        <link href="./public/css/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
         
     <body>
-        <?php include('header.php'); ?>
+        <?php require('./view/header.php'); ?>
         <div class="row">
         <p class="back-link m-2">
-            <a href="index.php">Retour à l'accueil</a>
+            <a href="home-list.php">Retour à l'accueil</a>
         </p>
             <div class="news">
                 <div class="alert alert-danger" role="alert">
                     <p class="alert-delete-publi mt-3"> 
-                        <img src="./img/svg/alert.svg" alt="" class="icon icon-alert-delete mr-2" />
+                        <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert-delete mr-2" />
                         Attention vous êtes sur le point de supprimer cette publication !
                     </p class="alert">
                 </div>

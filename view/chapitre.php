@@ -1,60 +1,18 @@
-<?php
-    session_start();
-
-    require ('./Model/Billet.php');
-    require ('./Model/BilletsManager.php');
-    require ('./Model/Commentaire.php');
-    require ('./Model/CommentairesManager.php');
-    
-    $billetManager = new BilletsManager();   
-    $billet = $billetManager->get($_GET['billet']);
-
-    $commentaireManager = new CommentairesManager();   
-    $commentaires = $commentaireManager->getAllCommentaire($_GET['billet']);
-
-    if (!empty($_POST)) 
-    {
-        $validation = true;
-
-        if (empty($_POST['pseudo'])) {
-            $validation = false;
-            $errorPseudo = 'Veuillez saisir un pseudo' ;
-        }
-        else if (strlen($_POST['pseudo']) <= 3) {
-            $validation = false;
-            $errorPseudo = 'Le pseudo doit comporter un minimum de 3 caractères.' ;
-        }
-        if (empty($_POST['commentaire'])) {
-            $validation = false;
-            $errorCom = 'Veuillez saisir un commentaire.' ;
-        }
-        else if (strlen($_POST['commentaire']) <= 3) {
-            $validation = false;
-            $errorCom = 'Le commentaire doit comporter un minimum de 3 caractères.' ;
-        }
-        if ($validation) {
-            $commentaireManager = new CommentairesManager();   
-            $addCommentaires = $commentaireManager->add($_POST['id_billet'], $_POST['pseudo'], $_POST['commentaire']);
-            header("Location: chapitre.php?billet=" . $_GET['billet'] ."&send=success");
-
-        }
-    }
-?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <title>Billet simple pour l'Alaska</title>
-        <link href="style.css" rel="stylesheet" />
+        <link href="./public/css/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
         
     <body>
-        <?php include('header.php'); ?>
+        <?php require('header.php'); ?>
         <div class="row">
             <p class="back-link m-2">
-                <a href="index.php">Retour à l'accueil</a>
+                <a href="../index.php">Retour à l'accueil</a>
             </p>
 
             <div class="news">
@@ -88,21 +46,21 @@
             <?php if (isset($errorPseudo)) { ?>
                 <div class="alert alert-danger" role="alert">
                     <p class="mb-0"> 
-                        <img src="./img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
+                        <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
                         <?= $errorPseudo ?>
                     </p class="alert">
                 </div>
                 <?php } if (isset($errorCom)) { ?>
                 <div class="alert alert-danger" role="alert">
                     <p class="mb-0"> 
-                        <img src="./img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
+                        <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
                         <?= $errorCom ?>
                     </p class="alert">
                 </div>
                 <?php } if (isset($_GET['send'])) { ?>
                     <div class="alert alert-success" role="alert">
                         <p class="mb-0"> 
-                            <img src="./img/svg/check.svg" alt="" class="icon icon-alert mr-2" />
+                            <img src="./public/img/svg/check.svg" alt="" class="icon icon-alert mr-2" />
                             Votre commentaire a bien été envoyé.
                         </p class="alert">
                     </div>

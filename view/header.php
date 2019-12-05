@@ -4,7 +4,7 @@
         <div class="header-contenu">
             <h1 class="accueil">Billet simple pour l'Alaska</h1>
             <nav class="text-right pb-2 mr-3">
-                <a class="connect" href="login.php">
+                <a class="connect" href="index.php?page=login">
                     <img src="./public/img/svg/log.svg" alt="" class="icon icon-log" />
                 </a>
                 <?php if (isset($_SESSION['id'])){ ?>

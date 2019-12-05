@@ -5,6 +5,8 @@
     require ('model/BilletsManager.php');
     require ('model/Commentaire.php');
     require ('model/CommentairesManager.php');
+    require ('model/User.php');
+    require ('model/UserManager.php');
 
     if (!empty($_GET)) 
     {
@@ -18,7 +20,7 @@
             require('controller/deleteComControl.php');
             getDeleteCom();
         }
-        elseif ($_GET['page'] === 'commentaire')
+        elseif ($_GET['page'] === 'commentaires')
         {
             require('controller/comControl.php');
             getCommentaire();

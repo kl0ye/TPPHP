@@ -6,16 +6,16 @@
             {
                 $reqDeleteCom = new CommentairesManager();
                 $reqDeleteCom->delete($_GET['id']);
-                header('Location: commentaires.php');
+                header('Location: index.php?page=commentaires');
             }
             else 
             {
-                header('Location: commentaires.php');
+                header('Location: index.php?page=commentaires');
             }
         }
         
         $commentaireManager = new CommentairesManager();   
         $commentaire = $commentaireManager->getOne($_GET['billet']);
-        require('./view/delete-com.php');  
+        require('view/delete-com.php');  
     }
 

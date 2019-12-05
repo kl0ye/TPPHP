@@ -5,12 +5,14 @@
             $user = $userManager->get($_POST['pseudo']);
             $isPasswordCorrect = password_verify($_POST['pass'], $user->getPass());
 
+
             if (!$user)
             {
                 $errorLogin =  'Mauvais identifiant ou mot de passe !';
             }
             else
             {
+
                 if ($isPasswordCorrect) {
                     $_SESSION['id'] = $user->getId();
                     $_SESSION['pseudo'] = $user->getPseudo();
@@ -21,7 +23,7 @@
                 }
             }
         }
-        if (!empty($_GET)) {
+        if (!empty($_GET['deconnect'])) {
             $_SESSION = array();
             session_destroy();
             

@@ -68,7 +68,7 @@
             
                 <div class="commentaires">
                     <h4>Laissez un commentaire</h4><br/>
-                    <form action="chapitre.php?billet=<?= $_GET['billet'] ?>#success" method="post">
+                    <form action="index.php?page=chapitre&billet=<?= $_GET['billet'] ?>#success" method="post">
                         <input type="hidden" name="id_billet" id="id-billet" value="<?= $_GET['billet'] ?>" />
                         <div class="input-form text-center">
                             <label for="auteur">Pseudo</label>

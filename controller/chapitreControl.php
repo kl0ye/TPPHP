@@ -29,7 +29,7 @@
             if ($validation) {
                 $commentaireManager = new CommentairesManager();   
                 $addCommentaires = $commentaireManager->add($_POST['id_billet'], $_POST['pseudo'], $_POST['commentaire']);
-                header("Location: chapitre.php?billet=" . $_GET['billet'] ."&send=success");
+                header("Location: index.php?page=chapitre&?billet=" . $_GET['billet'] ."&send=success");
             }
         }
         require('view/chapitre.php');

@@ -8,10 +8,10 @@
     </head>
         
     <body>
-        <?php require('./view/header.php'); ?>
+        <?php require('view/header.php'); ?>
         <div class="row">
         <p class="back-link m-2">
-            <a href="commentaires.php">Retour à la liste des commentaires</a>
+            <a href="index.php?page=commentaires">Retour à la liste des commentaires</a>
         </p>
             <div class="news">
                 <div class="alert alert-danger" role="alert">
@@ -21,7 +21,7 @@
                     </p class="alert">
                 </div>
                 <div class="confirm-delete text-center alert alert-secondary" role="alert">
-                    <form action="delete-com.php" method="get">
+                    <form action="" method="get">
                         <h5 class="mb-3 ">Confirmer la suppression de ce commentaire ?</h5>
                         <div class="input-form text-center">
                             <input type="hidden" name="id" id="id" value="<?= $commentaire->getId() ?>" />

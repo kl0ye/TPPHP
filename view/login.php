@@ -17,7 +17,7 @@
             <div class="news news-connect row justify-content-center">
                 <div class="col-6">
                     <?php if (empty($_SESSION['id'])) { ?>
-                    <form action="login.php" method="post">
+                    <form action="index.php?page=login" method="post">
                         <h2 class="mb-4">Connexion</h2>
                             <?php if (isset($errorLogin)) { ?>
                                 <div class="alert alert-danger" role="alert">
@@ -83,7 +83,7 @@
                             </tr>
                         </table>
                         
-                        <form action="login.php" method="get">
+                        <form action="index.php?page=login" method="get">
                             <input type="submit" name="deconnect" class="offset-1 col-10 btn-publi btn-lg btn-block" value="Se deconnecter" />
                         </form>
                     <?php } ?>

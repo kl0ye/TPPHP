@@ -67,5 +67,9 @@
             $reqDeleteArticle->execute([
                 'id' => $id
             ]);
+            $reqDeleteCom = $this->db->prepare('DELETE FROM commentaires WHERE id_billet = :id');
+            $reqDeleteCom->execute([
+                'id' => $id
+            ]);
         }
     }

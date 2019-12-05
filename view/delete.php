@@ -8,10 +8,10 @@
     </head>
         
     <body>
-        <?php require('./view/header.php'); ?>
+        <?php require('view/header.php'); ?>
         <div class="row">
         <p class="back-link m-2">
-            <a href="home-list.php">Retour à l'accueil</a>
+            <a href="index.php">Retour à l'accueil</a>
         </p>
             <div class="news">
                 <div class="alert alert-danger" role="alert">
@@ -21,7 +21,7 @@
                     </p class="alert">
                 </div>
                 <div class="confirm-delete text-center alert alert-secondary" role="alert">
-                    <form action="delete.php" method="get">
+                    <form action="index.php?page=delete" method="post">
                         <h5 class="mb-3 ">Confirmer la suppression de cette publication ?</h5>
                         <div class="input-form text-center">
                             <input type="hidden" name="id" id="id" value="<?= $billet->getId() ?>" />

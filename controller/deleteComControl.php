@@ -1,11 +1,11 @@
 <?php
     function getDeleteCom() {
-        if (!empty($_GET['id'])) {
+        if (!empty($_POST['id'])) {
 
-            if ($_GET['oui'] === 'Oui') 
+            if ($_POST['oui'] === 'Oui') 
             {
                 $reqDeleteCom = new CommentairesManager();
-                $reqDeleteCom->delete($_GET['id']);
+                $reqDeleteCom->delete($_POST['id']);
                 header('Location: index.php?page=commentaires');
             }
             else 
@@ -13,9 +13,10 @@
                 header('Location: index.php?page=commentaires');
             }
         }
-        
-        $commentaireManager = new CommentairesManager();   
-        $commentaire = $commentaireManager->getOne($_GET['billet']);
+        if (isset($_GET['billet'])) {
+            $commentaireManager = new CommentairesManager();   
+            $commentaire = $commentaireManager->getOne($_GET['billet']);
+        }
         require('view/delete-com.php');  
     }
 

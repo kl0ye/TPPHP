@@ -1,22 +1,22 @@
 <?php
-    session_start();
+    function getDelete() {
+        if (!empty($_POST['id'])) {
 
-    require ('./model/Billet.php');
-    require ('./model/BilletsManager.php');
-
-    if (!empty($_GET['id'])) {
-
-        if ($_GET['oui'] === 'Oui') 
-        {
-            $reqDeleteArticle = new BilletsManager();   
-            $deleteArticle = $reqDeleteArticle->delete($_GET['id']);
-            header('Location: board.php');
+            if ($_POST['oui'] === 'Oui') 
+            {
+                $reqDeleteArticle = new BilletsManager();   
+                $deleteArticle = $reqDeleteArticle->delete($_POST['id']);
+                header('Location: index.php?page=board');
+            }
+            else 
+            {
+                header('Location: index.php?page=board');
+            }
         }
-        else 
-        {
-            header('Location: board.php');
+        if (isset($_GET['billet'])) {
+            $billetManager = new BilletsManager();   
+            $billet = $billetManager->get($_GET['billet']);
         }
+        require('view/delete.php');  
     }
 
-    $billetManager = new BilletsManager();   
-    $billet = $billetManager->get($_GET['billet']);

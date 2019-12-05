@@ -8,7 +8,7 @@
     </head>
         
     <body>
-        <?php require('./view/header.php'); ?>
+        <?php require('view/header.php'); ?>
         <div class="row">
             <?php foreach ($billets as $billet) { ?>
                 <div class="news">
@@ -19,11 +19,11 @@
                     <?php if (isset($_SESSION['id'])) { ?>
                     <p class="date-crea">
                         <em>le <?= $billet->getDateCreation() ?></em>
-                        <a class="editer ml-1" href="update.php?billet=<?= $billet->getId() ?>" title="Editer l'article">
+                        <a class="editer ml-1" href="index.php?page=update&billet=<?= $billet->getId() ?>" title="Editer l'article">
                             <img src="./public/img/svg/pen.svg" alt="" class="icon icon-editer" />
                             Editer
                         </a>
-                        <a class="delete ml-1" href="delete.php?billet=<?= $billet->getId() ?>" title="Supprimer l'article">
+                        <a class="delete ml-1" href="index.php?page=delete&billet=<?= $billet->getId() ?>" title="Supprimer l'article">
                             <img src="./public/img/svg/trash.svg" alt="" class="icon icon-delete" />
                             Supprimer
                         </a>

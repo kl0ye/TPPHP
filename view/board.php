@@ -39,7 +39,7 @@
                                 <a class="eye ml-1" href="index.php?page=chapitre&billet=<?= $billet->getId() ?>" title="Voir l'article">
                                     <img src="./public/img/svg/eye.svg" alt="" class="icon icon-eye" />
                                 </a>
-                                <a class="eye ml-1" href="index.php?page=update&?billet=<?= $billet->getId() ?>" title="Editer l'article">
+                                <a class="eye ml-1" href="index.php?page=update&billet=<?= $billet->getId() ?>" title="Editer l'article">
                                     <img src="./public/img/svg/pen.svg" alt="" class="icon icon-delete" />
                                 </a>
                                 <a class="delete ml-1" href="index.php?page=delete&billet=<?= $billet->getId() ?>" title="Supprimer l'article">

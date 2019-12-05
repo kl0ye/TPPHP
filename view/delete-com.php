@@ -21,7 +21,7 @@
                     </p class="alert">
                 </div>
                 <div class="confirm-delete text-center alert alert-secondary" role="alert">
-                    <form action="" method="get">
+                    <form action="index.php?page=delete-com" method="post">
                         <h5 class="mb-3 ">Confirmer la suppression de ce commentaire ?</h5>
                         <div class="input-form text-center">
                             <input type="hidden" name="id" id="id" value="<?= $commentaire->getId() ?>" />

@@ -1,11 +1,6 @@
 <?php
     function getChapitre() {
-        $billetManager = new BilletsManager();   
-        $billet = $billetManager->get($_GET['billet']);
-
-        $commentaireManager = new CommentairesManager();   
-        $commentaires = $commentaireManager->getAllCommentaire($_GET['billet']);
-
+        var_dump($_GET['billet']);
         if (!empty($_POST)) 
         {
             $validation = true;
@@ -29,8 +24,15 @@
             if ($validation) {
                 $commentaireManager = new CommentairesManager();   
                 $addCommentaires = $commentaireManager->add($_POST['id_billet'], $_POST['pseudo'], $_POST['commentaire']);
-                header("Location: index.php?page=chapitre&?billet=" . $_GET['billet'] ."&send=success");
+                header("Location: index.php?page=chapitre&billet=" . $_GET['billet'] ."&send=success");
             }
+        }
+        if (isset($_GET['billet'])) {
+            $billetManager = new BilletsManager();   
+            $billet = $billetManager->get($_GET['billet']);
+
+            $commentaireManager = new CommentairesManager();   
+            $commentaires = $commentaireManager->getAllCommentaire($_GET['billet']);
         }
         require('view/chapitre.php');
     }

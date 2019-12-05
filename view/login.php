@@ -83,7 +83,7 @@
                             </tr>
                         </table>
                         
-                        <form action="index.php?page=login" method="get">
+                        <form action="index.php?page=login" method="post">
                             <input type="submit" name="deconnect" class="offset-1 col-10 btn-publi btn-lg btn-block" value="Se deconnecter" />
                         </form>
                     <?php } ?>

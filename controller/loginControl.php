@@ -1,35 +1,39 @@
 <?php 
     function getLogin() {
         if (!empty($_POST)) {
-            $userManager = new UserManager();
-            $user = $userManager->get($_POST['pseudo']);
-            $isPasswordCorrect = password_verify($_POST['pass'], $user->getPass());
-
-
-            if (!$user)
+            if (isset($_POST['deconnect'])) 
             {
-                $errorLogin =  'Mauvais identifiant ou mot de passe !';
+                $_SESSION = array();
+                session_destroy();
+                
+                setcookie('login', '');
+                setcookie('pass_hache', '');
             }
-            else
+            else 
             {
+                $userManager = new UserManager();
+                $user = $userManager->get($_POST['pseudo']);
+                $isPasswordCorrect = password_verify($_POST['pass'], $user->getPass());
 
-                if ($isPasswordCorrect) {
-                    $_SESSION['id'] = $user->getId();
-                    $_SESSION['pseudo'] = $user->getPseudo();
-                    $successLogin = 'Vous êtes connecté !';
+                if (!$user)
+                {
+                    $errorLogin =  'Mauvais identifiant ou mot de passe !';
                 }
-                else {
-                    $errorLogin = 'Mauvais identifiant ou mot de passe !';
+                else
+                {
+
+                    if ($isPasswordCorrect) {
+                        $_SESSION['id'] = $user->getId();
+                        $_SESSION['pseudo'] = $user->getPseudo();
+                        $successLogin = 'Vous êtes connecté !';
+                    }
+                    else {
+                        $errorLogin = 'Mauvais identifiant ou mot de passe !';
+                    }
                 }
             }
         }
-        if (!empty($_GET['deconnect'])) {
-            $_SESSION = array();
-            session_destroy();
-            
-            setcookie('login', '');
-            setcookie('pass_hache', '');
-        }
+
         if (!empty($_SESSION['id'])) {
             $userManager = new UserManager();
             $user = $userManager->get($_SESSION['pseudo']);

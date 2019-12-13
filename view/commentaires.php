@@ -14,7 +14,7 @@
             <p class=" mt-2 ml-2">
                 <a href="index.php">Retour à la l'accueil</a>
             </p>
-            <div class="news row justify-content-center">
+            <section class="news row justify-content-center">
                 <h2>
                     Gerer les commentaires<br />
                 </h2>
@@ -29,7 +29,7 @@
                     </thead>
                     <tbody>
                         <?php foreach ($commentaires as $commentaire) { ?>
-                        <tr>
+                        <tr <?php if ($commentaire->getSignal() === '1') { ?>class="table-danger"<?php } ?> >
                             <td>
                                 <?= $commentaire->getDateCommentaire() ?>
                             </td>
@@ -37,7 +37,12 @@
                                 <?= $commentaire->getPseudo() ?>
                             </td>
                             <td>
-                                <?= $commentaire->getCommentaire() ?>
+                                <?php if ($commentaire->getSignal() === '1') { ?>
+                                    <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
+                                    <p class="signal">Commentaire signalé</p>
+                                <?php } else { 
+                                    echo $commentaire->getCommentaire(); 
+                                } ?>
                             </td>
                             <td>
                                 <a class="eye ml-1" href="index.php?page=chapitre&billet=<?= $commentaire->getIdBillet() ?>#commentaires" title="Voir le commentaire">
@@ -52,7 +57,7 @@
                     </tbody>
                 </table>
             
-            </div>
+            </section>
         </div>
     </body>
 </html>

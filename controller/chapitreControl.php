@@ -1,6 +1,5 @@
 <?php
     function getChapitre() {
-        var_dump($_GET['billet']);
         if (!empty($_POST)) 
         {
             $validation = true;
@@ -26,6 +25,9 @@
                 $addCommentaires = $commentaireManager->add($_POST['id_billet'], $_POST['pseudo'], $_POST['commentaire']);
                 header("Location: index.php?page=chapitre&billet=" . $_GET['billet'] ."&send=success");
             }
+        }
+        if (isset($_GET['com'])) {
+            $signalCom = 'Le commentaire à bien été signalé.';
         }
         if (isset($_GET['billet'])) {
             $billetManager = new BilletsManager();   

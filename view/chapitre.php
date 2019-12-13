@@ -10,40 +10,54 @@
         
     <body>
         <?php require('header.php'); ?>
-        <div class="row">
+        <section class="row">
             <p class="back-link m-2">
-                <a href="../index.php">Retour à l'accueil</a>
+                <a href="index.php">Retour à l'accueil</a>
             </p>
 
-            <div class="news">
+            <article class="news">
                 <h2>
-                    <?= htmlspecialchars($billet->getTitre()) ?>
+                    <?= $billet->getTitre() ?>
                 </h2>
                 <hr class="mt-0 separator" />
                 <p class="date-crea">
                     <em>le <?= $billet->getDateCreation() ?></em>
                 </p>
                 <p class="contenu">
-                    <?= nl2br(htmlspecialchars($billet->getContenu())) ?>
+                    <?= $billet->getContenu() ?>
                 </p>
-            </div>
-            <div class="news" id="commentaires">
-            <h2>Commentaires</h2>
-            <div class="color-box-commentaires">
-            <?php foreach ($commentaires as $commentaire) { ?>
-                <div class="show-commentaires mb-5">
-                    <p>
-                        <strong> <?= $commentaire->getPseudo() ?> </strong> 
-                        <em class="small-date">le <?= $commentaire->getDateCommentaire() ?></em>
-                    </p>
-                    <p class="ml-3"><?= $commentaire->getCommentaire() ?></p>
-               </div>
-                
-            <?php } ?>
-            </div>
-            <div class="ancre-last-com" id="success"></div>
-            <hr class="mt-0" />
-            <?php if (isset($errorPseudo)) { ?>
+            </article>
+            <article class="news" id="commentaires">
+                <h2>Commentaires</h2>
+                <div class="color-box-commentaires">
+                    <?php if (isset($signalCom)) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <p class="mb-0"> 
+                            <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
+                            <?= $signalCom ?>
+                        </p class="alert">
+                    </div>
+                    <?php } 
+                        foreach ($commentaires as $commentaire) { 
+                            if ($commentaire->getSignal() === '0') {
+                    ?>
+                    <div class="show-commentaires mb-5">
+                        <p>
+                            <strong> <?= $commentaire->getPseudo() ?> </strong> 
+                            <em class="small-date">le <?= $commentaire->getDateCommentaire() ?></em>
+                        </p>
+                        <p class="ml-3"><?= $commentaire->getCommentaire() ?></p>
+                        <p>
+                            <a href="index.php?page=signal&billet=<?= $commentaire->getIdBillet() ?>&commentaire=<?= $commentaire->getId() ?>">
+                                Signaler le commentaire
+                            </a>   
+                        </p>
+                    </div>
+                    <?php  } } ?>
+                </div>
+                <div class="ancre-last-com" id="success"></div>
+                <hr class="mt-0" />
+                <?php if (isset($errorPseudo)) { ?>
                 <div class="alert alert-danger" role="alert">
                     <p class="mb-0"> 
                         <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
@@ -83,7 +97,7 @@
                         <input type="submit" class=" btn-publi btn-lg btn-block"  value="Envoyer" />
                     </form>
                 </div>
-            </div>
-        </div>
+            </article>
+        </section>
     </body>
 </html>

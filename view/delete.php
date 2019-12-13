@@ -9,11 +9,11 @@
         
     <body>
         <?php require('view/header.php'); ?>
-        <div class="row">
+        <section class="row">
         <p class="back-link m-2">
             <a href="index.php">Retour à l'accueil</a>
         </p>
-            <div class="news">
+            <article class="news">
                 <div class="alert alert-danger" role="alert">
                     <p class="alert-delete-publi mt-3"> 
                         <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert-delete mr-2" />
@@ -41,7 +41,7 @@
                 <p class="contenu">
                 <?= $billet->getContenu() ?>
                 </p>
-            </div>
-        </div>
+            </article>
+        </section>
     </body>
 </html>

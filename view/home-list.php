@@ -9,9 +9,9 @@
         
     <body>
         <?php require('view/header.php'); ?>
-        <div class="row">
+        <section class="row">
             <?php foreach ($billets as $billet) { ?>
-                <div class="news">
+                <article class="news">
                     <h2>
                         <?= $billet->getTitre() ?><br />
                     </h2>
@@ -29,18 +29,18 @@
                         </a>
                     </p>
                     <?php } ?>
-                    <p class="contenu contenu-hidden">
+                    <div class="contenu contenu-hidden">
                     <?= $billet->getContenu() ?>
                     <br />
-                    </p>
+                    </div>
                     <a href="index.php?page=chapitre&billet=<?= $billet->getId() ?>">Lire la suite..</a>
                     <hr />
                     <div class="commentaires">
                         <h4 class="text-center mb-4">Derniers commentaires</h4>
                         <?php 
                             $commentaires = $commentaireManager->getAllCommentaire($billet->getId());
-                            foreach ($commentaires as $commentaire)
-                            { 
+                            foreach ($commentaires as $commentaire) { 
+                                if ($commentaire->getSignal() === '0') {
                         ?>
                         <div class="show-commentaires mb-5">
                             <p>
@@ -49,14 +49,14 @@
                             </p>
                             <p class="ml-3"><?= $commentaire->getCommentaire() ?></p>
                         </div>
-                        <?php } ?>
+                        <?php } } ?>
                         <div class="text-right mr-4">
                             <img src="./public/img/svg/comment.svg" alt="" class="icon icon-comment" />
                             <a href="index.php?page=chapitre&billet=<?= $billet->getId() ?>#commentaires">Voir tous les commentaires</a>                        
                         </div>
                     </div>
-                </div>
+                </article>
             <?php } ?>
-        </div>
+        </section>
     </body>
 </html>

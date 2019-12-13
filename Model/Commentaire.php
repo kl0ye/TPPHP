@@ -6,6 +6,7 @@
         private $pseudo;
         private $commentaire;
         private $date_commentaire;
+        private $signaler;
         
         public function __construct (array $data) {
            $this->hydrate($data);
@@ -27,6 +28,9 @@
             if (isset($data['date_commentaire_fr'])) {
                 $this->setDateCommentaire($data['date_commentaire_fr']);
             }
+            if (isset($data['signaler'])) {
+                $this->setSignal($data['signaler']);
+            }
 
         }
 
@@ -47,6 +51,9 @@
         public function getDateCommentaire() {
             return $this->date_commentaire;
         }
+        public function getSignal() {
+            return $this->signaler;
+        }
         
         //Setter
 
@@ -64,5 +71,8 @@
         }
         public function setDateCommentaire($date) {
             $this->date_commentaire = $date;
+        }
+        public function setSignal($signal) {
+            $this->signaler = $signal;
         }
     }

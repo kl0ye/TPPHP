@@ -22,13 +22,18 @@
         }
         elseif ($_GET['page'] === 'delete-com')
         {
-            require('controller/deleteComControl.php');
+            require('controller/commentairesControl.php');
             getDeleteCom();
         }
         elseif ($_GET['page'] === 'commentaires')
         {
-            require('controller/comControl.php');
+            require('controller/commentairesControl.php');
             getCommentaire();
+        }
+        elseif ($_GET['page'] === 'signal') 
+        {
+            require('controller/commentairesControl.php');
+            getSignal();
         }
         elseif ($_GET['page'] === 'login')
         {
@@ -49,6 +54,10 @@
         {
             require('controller/updateControl.php');
             getUpdate();
+        }
+        else {
+            require('controller/404Control.php');
+            getError();
         }
     }
     else 

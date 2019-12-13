@@ -12,14 +12,14 @@
         
     <body>
         <?php require('view/header.php'); ?>
-        <div class="row">
+        <section class="row">
             <p class=" mt-2 ml-2">
                 <a href="index.php?page=board">Retour au tableau de bord</a>
             </p>
-            <div class="news">
+            <article class="news">
                 <div class="commentaires">
                     <form action="index.php?page=update" method="post">
-                        <h2 class="mb-5">Nouveau Chapitre</h2>
+                        <h2 class="mb-5">Modifier Chapitre</h2>
                         <input type="hidden" name="id_billet" id="id-billet" value="<?= $_GET['billet'] ?>" />
                         <div class="input-form mb-4 text-center">
                             <label class="label-editor" for="titre">Titre</label>
@@ -32,7 +32,7 @@
                         <input type="submit" class=" btn-publi btn-lg btn-block" value="Mettre à jour" />
                     </form>
                 </div>
-            </div>
-        </div>
+            </article>
+        </section>
     </body>
 </html>

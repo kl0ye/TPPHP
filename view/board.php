@@ -14,7 +14,7 @@
             <p class=" mt-2 ml-2">
                 <a href="index.php">Retour à la l'accueil</a>
             </p>
-            <div class="news row justify-content-center">
+            <section class="news row justify-content-center">
                 <h2 class="mb-4">
                     Mon tableau de bord
                 </h2>
@@ -56,7 +56,7 @@
                         Rédiger un nouveau chapitre
                     </a>
                 </div>
-            </div>
+            </section>
         </div>
     </body>
 </html>

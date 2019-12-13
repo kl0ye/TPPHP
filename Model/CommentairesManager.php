@@ -16,7 +16,7 @@
         }
 
         public function get($idBillet) {
-            $req = $this->db->prepare('SELECT id, id_billet, pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id_billet = :id_billet ORDER BY date_commentaire');
+            $req = $this->db->prepare('SELECT id, id_billet, pseudo, commentaire, signaler, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id_billet = :id_billet ORDER BY date_commentaire');
             $req->execute([
                 'id_billet' => $idBillet
             ]);
@@ -24,7 +24,7 @@
         }
 
         public function getOne($id) {
-            $req = $this->db->prepare('SELECT id, id_billet, pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id = :id');
+            $req = $this->db->prepare('SELECT id, id_billet, pseudo, commentaire, signaler, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id = :id');
             $req->execute([
                 'id' => $id
             ]);
@@ -33,7 +33,7 @@
 
         public function getAllCommentaire($idBillet) {
             $data = [];
-            $req = $this->db->prepare('SELECT id, id_billet, pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id_billet = :id_billet ORDER BY date_commentaire');
+            $req = $this->db->prepare('SELECT id, id_billet, pseudo, commentaire, signaler, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id_billet = :id_billet ORDER BY date_commentaire');
             $req->execute([
                 'id_billet' => $idBillet
             ]);
@@ -45,7 +45,7 @@
 
         public function getListCommentaire() {
             $data = [];
-            $req = $this->db->query('SELECT id, id_billet, pseudo, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires ORDER BY date_commentaire');
+            $req = $this->db->query('SELECT id, id_billet, pseudo, commentaire, signaler, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires ORDER BY date_commentaire');
             while ($liste = $req->fetch()) {
                 $data[] = new Commentaire($liste);
             }
@@ -65,6 +65,22 @@
         {
             $reqDeleteCom = $this->db->prepare('DELETE FROM commentaires WHERE id = :id');
             $reqDeleteCom->execute([
+                'id' => $id
+            ]);
+        }
+
+        public function signal($id)
+        {
+            $reqSignalCom = $this->db->prepare('UPDATE commentaires SET signaler = 1 WHERE id = :id');
+            $reqSignalCom->execute([
+                'id' => $id
+            ]);
+        }
+
+        public function reactivate($id)
+        {
+            $reqSignalCom = $this->db->prepare('UPDATE commentaires SET signaler = 0 WHERE id = :id');
+            $reqSignalCom->execute([
                 'id' => $id
             ]);
         }

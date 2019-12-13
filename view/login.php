@@ -10,11 +10,11 @@
         
     <body>
         <?php require('header.php'); ?>
-        <div class="row">
+        <section class="row">
             <p class=" mt-2 ml-2">
                 <a href="index.php">Retour à la l'accueil</a>
             </p>
-            <div class="news news-connect row justify-content-center">
+            <article class="news news-connect row justify-content-center">
                 <div class="col-6">
                     <?php if (empty($_SESSION['id'])) { ?>
                     <form action="index.php?page=login" method="post">
@@ -88,7 +88,7 @@
                         </form>
                     <?php } ?>
                 </div>
-            </div>
-        </div>
+            </article>
+        </section>
     </body>T
 </html>

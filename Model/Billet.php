@@ -33,7 +33,7 @@
             return htmlspecialchars($this->titre);
         }
         public function getContenu() {
-            return htmlspecialchars($this->contenu);
+            return $this->contenu;
         }
         public function getDateCreation() {
             return $this->date_creation;

@@ -23,12 +23,12 @@
     <head>
         <meta charset="utf-8" />
         <title>Billet simple pour l'Alaska</title>
-        <link href="style.css" rel="stylesheet" /> 
+        <link href="./public/css/style.css" rel="stylesheet" /> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
         
     <body>
-        <?php include('header.php'); ?>
+        <?php require('./view/header.php'); ?>
         <div class="row">
             <div class="news news-accueil">
                 <h2>Bienvenue<br /></h2>
@@ -65,7 +65,7 @@
                             Ce sera le premier roman de Forteroche publié par les Éditions Gallimard.
                         </p>
                     </div>
-                    <img src="./img/jean.jpg"class="photo-jean" alt="">
+                    <img src="./public/img/jean.jpg"class="photo-jean" alt="">
                 </div>
                 
             </div>

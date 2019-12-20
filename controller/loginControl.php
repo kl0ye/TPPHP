@@ -38,6 +38,14 @@
             $userManager = new UserManager();
             $user = $userManager->get($_SESSION['pseudo']);
         }
+        $commentaireManager = new CommentairesManager();   
+        $commentairesCheck = $commentaireManager->getListCommentaire();
+        foreach ($commentairesCheck as $commentaire) { 
+            if ($commentaire->getSignal() === '1') {
+                $commentaireSignal = true;
+                $alertCom = 'Un ou plusieurs commentaires vous ont été signalés.';
+            }
+        }
         require('view/login.php');
     }
     

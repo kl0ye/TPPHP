@@ -1,6 +1,5 @@
 <?php
     function getUpdate() {
-        var_dump($_GET['billet']);
         if (isset($_POST['contenu']) && isset($_POST['titre'])) 
         {
             $reqUpdateArticle = new BilletsManager();   
@@ -10,6 +9,13 @@
         if (isset($_GET['billet'])) {
             $billetManager = new BilletsManager();   
             $billet = $billetManager->get($_GET['billet']);
+        }
+        $commentaireManager = new CommentairesManager();   
+        $commentairesCheck = $commentaireManager->getListCommentaire();
+        foreach ($commentairesCheck as $commentaire) { 
+            if ($commentaire->getSignal() === '1') {
+                $commentaireSignal = true;
+            }
         }
         require('view/update.php');
     }

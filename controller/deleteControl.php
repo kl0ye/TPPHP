@@ -17,6 +17,13 @@
             $billetManager = new BilletsManager();   
             $billet = $billetManager->get($_GET['billet']);
         }
+        $commentaireManager = new CommentairesManager();   
+        $commentairesCheck = $commentaireManager->getListCommentaire();
+        foreach ($commentairesCheck as $commentaire) { 
+            if ($commentaire->getSignal() === '1') {
+                $commentaireSignal = true;
+            }
+        }
         require('view/delete.php');  
     }
 

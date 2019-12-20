@@ -157,6 +157,9 @@ header {
 .delete {
     color: #da061a!important;
 }
+.approuve {
+    color: #155724!important;
+}
 .editer {
     color: #505f8a!important;
 }
@@ -165,6 +168,9 @@ header {
 }
 .delete:hover {
     color: #da061a!important;
+}
+.approuve:hover {
+    color: #155724!important;
 }
 .editer:hover {
     color: #505f8a!important;
@@ -184,7 +190,7 @@ header {
 .icon-eye {
     width: .9rem;
 }
-.icon-alert, .icon-comment, .icon-log, .icon-edit {
+.icon-alert, .icon-comment, .icon-log, .icon-edit, .icon-approuve {
     width: 1rem;
 }
 .icon-user {
@@ -209,6 +215,12 @@ header {
 }
 .alert-delete-publi {
     font-size: 1.2rem;
+}
+.alert-success {
+    width: 100%;
+}
+.params:hover {
+    text-decoration: none;
 }
 .fa-comment-alt {
     color: #036bdc;

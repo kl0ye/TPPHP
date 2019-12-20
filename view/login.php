@@ -46,7 +46,14 @@
                                 <?= $successLogin ?>
                                 </p class="alert">
                             </div>
-                        <?php } ?>
+                        <?php } if (isset($commentaireSignal)) { ?> 
+                            <div class="alert alert-danger" role="alert">
+                                <p class="mb-0"> 
+                                    <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
+                                    <?= $alertCom ?>
+                                </p>
+                            </div>
+                        <?php } ?> 
                         <div class="text-center user m-3">
                             <img src="./public/img/svg/user.svg" alt="" class="icon icon-user align-center p-1" />
                         </div>
@@ -60,9 +67,15 @@
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <a class="m-2" href="index.php?page=commentaires">
-                                        <img src="./public/img/svg/comment-regular.svg" alt="" class="icon icon-comment-regular" />
-                                    </a>
+                                    <?php if (isset($commentaireSignal)) { ?> 
+                                        <a class="m-2" href="index.php?page=commentaires">
+                                            <img src="./public/img/svg/comment-signal.svg" alt="" class="icon icon-comment-regular" />
+                                        </a>
+                                    <?php } else { ?> 
+                                        <a class="m-2" href="index.php?page=commentaires">
+                                            <img src="./public/img/svg/comment-regular.svg" alt="" class="icon icon-comment-regular" />
+                                        </a>
+                                    <?php } ?>
                                 </td>
                                 <td class="text-center">
                                     <a class="board ml-2 mr-2" href="index.php?page=board">

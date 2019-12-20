@@ -1,5 +1,12 @@
 <?php
     function getChapitre() {
+        $commentaireManager = new CommentairesManager();   
+        $commentairesCheck = $commentaireManager->getListCommentaire();
+        foreach ($commentairesCheck as $commentaire) { 
+            if ($commentaire->getSignal() === '1') {
+                $commentaireSignal = true;
+            }
+        }
         if (!empty($_POST)) 
         {
             $validation = true;
@@ -32,8 +39,7 @@
         if (isset($_GET['billet'])) {
             $billetManager = new BilletsManager();   
             $billet = $billetManager->get($_GET['billet']);
-
-            $commentaireManager = new CommentairesManager();   
+ 
             $commentaires = $commentaireManager->getAllCommentaire($_GET['billet']);
         }
         require('view/chapitre.php');

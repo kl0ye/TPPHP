@@ -53,7 +53,7 @@
         }
 
         public function add($idBillet, $pseudo, $commentaire) {
-            $req =  $this->db->prepare('INSERT INTO commentaires (id_billet, pseudo, commentaire, date_commentaire) VALUES(:id_billet, :pseudo, :commentaire, NOW())');
+            $req =  $this->db->prepare('INSERT INTO commentaires (id_billet, pseudo, commentaire, signaler, date_commentaire) VALUES(:id_billet, :pseudo, :commentaire, 0, NOW())');
             $req->execute([
                 'id_billet' => $idBillet,
                 'pseudo' => $pseudo,
@@ -77,7 +77,7 @@
             ]);
         }
 
-        public function reactivate($id)
+        public function approuve($id)
         {
             $reqSignalCom = $this->db->prepare('UPDATE commentaires SET signaler = 0 WHERE id = :id');
             $reqSignalCom->execute([

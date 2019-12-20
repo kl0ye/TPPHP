@@ -3,6 +3,6 @@
     <h1>404</h1>
 
 
-    <h2>Oops! Something went wrong!</h2>
-    <a href="index.php" class="btn">Return to Home</a>
+    <h2>Oops! La page demandée n'existe pas!</h2>
+    <a href="index.php" class="btn">Retourner à l'accueil</a>
 </div>

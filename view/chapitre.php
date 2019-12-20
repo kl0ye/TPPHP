@@ -22,6 +22,16 @@
                 <hr class="mt-0 separator" />
                 <p class="date-crea">
                     <em>le <?= $billet->getDateCreation() ?></em>
+                    <?php if (isset($_SESSION['id'])) { ?>
+                        <a class="editer ml-1" href="index.php?page=update&billet=<?= $billet->getId() ?>" title="Editer l'article">
+                            <img src="./public/img/svg/pen.svg" alt="" class="icon icon-editer" />
+                            Editer
+                        </a>
+                        <a class="delete ml-1" href="index.php?page=delete&billet=<?= $billet->getId() ?>" title="Supprimer l'article">
+                            <img src="./public/img/svg/trash.svg" alt="" class="icon icon-delete" />
+                            Supprimer
+                        </a>
+                    <?php } ?>
                 </p>
                 <p class="contenu">
                     <?= $billet->getContenu() ?>
@@ -39,19 +49,32 @@
                     </div>
                     <?php } 
                         foreach ($commentaires as $commentaire) { 
-                            if ($commentaire->getSignal() === '0') {
+                            if ($commentaire->getSignal() === '0' || isset($_SESSION['id'])) {
                     ?>
-                    <div class="show-commentaires mb-5">
+                    <div class="show-commentaires mb-5 <?php if ($commentaire->getSignal() === '1') { ?>alert-danger<?php } ?>">
                         <p>
                             <strong> <?= $commentaire->getPseudo() ?> </strong> 
                             <em class="small-date">le <?= $commentaire->getDateCommentaire() ?></em>
                         </p>
                         <p class="ml-3"><?= $commentaire->getCommentaire() ?></p>
-                        <p>
-                            <a href="index.php?page=signal&billet=<?= $commentaire->getIdBillet() ?>&commentaire=<?= $commentaire->getId() ?>">
-                                Signaler le commentaire
-                            </a>   
-                        </p>
+                        <?php if (($commentaire->getSignal() === '0') && (!isset($_SESSION['id']))) { ?>
+                            <p>
+                                <a href="index.php?page=signal&billet=<?= $commentaire->getIdBillet() ?>&commentaire=<?= $commentaire->getId() ?>">
+                                    Signaler le commentaire
+                                </a>   
+                            </p>
+                        <?php } elseif ($commentaire->getSignal() === '1') { ?>
+                            <p class="text-right">Ce commentaire à été signalé.<br>
+                                <a class="text-right approuve ml-1" href="index.php?page=approuve&billet=<?= $commentaire->getIdBillet() ?>&commentaire=<?= $commentaire->getId() ?>" title="Approuver le commentaire">
+                                    <img src="./public/img/svg/approuve.svg" alt="" class="icon icon-approuve" />
+                                    Approuver
+                                </a>
+                                <a class="text-right delete ml-1" href="index.php?page=delete-com&commentaire=<?= $commentaire->getId() ?>" title="Supprimer le commentaire">
+                                    <img src="./public/img/svg/trash.svg" alt="" class="icon icon-delete" />
+                                    Supprimer
+                                </a>
+                            </p>
+                        <?php } ?>
                     </div>
                     <?php  } } ?>
                 </div>
@@ -62,21 +85,21 @@
                     <p class="mb-0"> 
                         <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
                         <?= $errorPseudo ?>
-                    </p class="alert">
+                    </p>
                 </div>
                 <?php } if (isset($errorCom)) { ?>
                 <div class="alert alert-danger" role="alert">
                     <p class="mb-0"> 
                         <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
                         <?= $errorCom ?>
-                    </p class="alert">
+                    </p>
                 </div>
                 <?php } if (isset($_GET['send'])) { ?>
                     <div class="alert alert-success" role="alert">
                         <p class="mb-0"> 
                             <img src="./public/img/svg/check.svg" alt="" class="icon icon-alert mr-2" />
                             Votre commentaire a bien été envoyé.
-                        </p class="alert">
+                        </p>
                     </div>
                 <?php } ?>
             

@@ -35,6 +35,11 @@
             require('controller/commentairesControl.php');
             getSignal();
         }
+        elseif ($_GET['page'] === 'approuve')
+        {
+            require('controller/commentairesControl.php');
+            getApprouve();
+        }
         elseif ($_GET['page'] === 'login')
         {
             require('controller/loginControl.php');

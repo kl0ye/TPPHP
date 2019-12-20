@@ -7,7 +7,12 @@
                 <a class="connect" href="index.php?page=login">
                     <img src="./public/img/svg/log.svg" alt="" class="icon icon-log" />
                 </a>
-                <?php if (isset($_SESSION['id'])){ ?>
+                <?php if (isset($_SESSION['id'])){
+                    if (isset($commentaireSignal)) { ?>
+                        <a class="params ml-2" href="index.php?page=commentaires">
+                            <img src="./public/img/svg/comment-signal.svg" alt="" class="icon icon-log" />
+                        </a> 
+                    <?php } ?>
                     <a class="params ml-2 mr-2" href="index.php?page=board">
                         <img src="./public/img/svg/params.svg" alt="" class="icon icon-log" />
                     </a>
@@ -24,7 +29,12 @@
                 <a class="connect" href="index.php?page=login">
                     <img src="./public/img/svg/log.svg" alt="" class="icon icon-log" />
                 </a>
-                <?php if (isset($_SESSION['id'])){ ?>
+                <?php if (isset($_SESSION['id'])){ 
+                    if (isset($commentaireSignal)) { ?>
+                        <a class="params ml-2" href="index.php?page=commentaires">
+                            <img src="./public/img/svg/comment-signal.svg" alt="" class="icon icon-log" />
+                        </a> 
+                    <?php } ?>
                     <a class="params ml-2 mr-2" href="index.php?page=board">
                         <img src="./public/img/svg/params.svg" alt="" class="icon icon-log" />
                     </a>

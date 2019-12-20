@@ -18,6 +18,14 @@
                 <h2>
                     Gerer les commentaires<br />
                 </h2>
+                <?php if (isset($_GET['approuve'])) { ?>
+                    <div class="alert alert-success" role="alert">
+                        <p class="mb-0"> 
+                            <img src="./public/img/svg/check.svg" alt="" class="icon icon-alert mr-2" />
+                            Le commentaire a été approuvé.
+                        </p class="alert">
+                    </div>
+                <?php } ?>
                 <table class="table table-sm">
                     <thead>
                         <tr class="table-list">
@@ -51,6 +59,11 @@
                                 <a class="delete ml-1" href="index.php?page=delete-com&billet=<?= $commentaire->getId() ?>" title="Supprimer le commentaire">
                                     <img src="./public/img/svg/trash.svg" alt="" class="icon icon-delete" />
                                 </a>
+                                <?php if ($commentaire->getSignal() === '1') { ?>
+                                    <a class="text-right approuve ml-1" href="index.php?page=approuve&billet=<?= $commentaire->getIdBillet() ?>&commentaire=<?= $commentaire->getId() ?>" title="Approuver le commentaire">
+                                        <img src="./public/img/svg/approuve.svg" alt="" class="icon icon-approuve" />
+                                    </a>
+                                <?php } ?>
                             </td>
                         </tr>
                         <?php } ?>

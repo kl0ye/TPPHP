@@ -5,7 +5,6 @@
         private $pseudo;
         private $pass;
         private $email;
-        private $date_inscription;
         
         public function __construct (array $data) {
            $this->hydrate($data);
@@ -24,9 +23,6 @@
             if (isset($data['email'])) {
                 $this->setEmail($data['email']);
             }
-            if (isset($data['date_inscription'])) {
-                $this->setDateInscription($data['date_inscription']);
-            }
 
         }
         
@@ -42,9 +38,6 @@
         public function getEmail() {
             return $this->email;
         }
-        public function getDateInscription() {
-            return $this->date_inscription;
-        }
         public function setId($id) {
             $this->id = $id;
         }
@@ -56,8 +49,5 @@
         }
         public function setEmail($email) {
             $this->email = $email;
-        }
-        public function setDateInscription($date) {
-            $this->date_inscription = $date;
         }
     }

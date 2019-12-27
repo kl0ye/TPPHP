@@ -1,12 +1,12 @@
 <?php 
     session_start();
 
-    require ('model/Billet.php');
-    require ('model/BilletsManager.php');
-    require ('model/Commentaire.php');
-    require ('model/CommentairesManager.php');
-    require ('model/User.php');
-    require ('model/UserManager.php');
+    require('Model/Billet.php');
+    require('Model/BilletsManager.php');
+    require('Model/Commentaire.php');
+    require('Model/CommentairesManager.php');
+    require('Model/User.php');
+    require('Model/UserManager.php');
 
     if (!empty($_GET)) 
     {

@@ -11,9 +11,15 @@
             }
             else 
             {
+                $user = false;
+                $userPost = $_POST['pseudo'];
                 $userManager = new UserManager();
-                $user = $userManager->get($_POST['pseudo']);
-                $isPasswordCorrect = password_verify($_POST['pass'], $user->getPass());
+                $usersCheck = $userManager->getAllUsers();
+                foreach ($usersCheck as $users) { 
+                    if ($users->getPseudo() === $userPost) {
+                        $user = $userManager->get($userPost);
+                    }
+                }
 
                 if (!$user)
                 {
@@ -21,7 +27,7 @@
                 }
                 else
                 {
-
+                    $isPasswordCorrect = password_verify($_POST['pass'], $user->getPass());
                     if ($isPasswordCorrect) {
                         $_SESSION['id'] = $user->getId();
                         $_SESSION['pseudo'] = $user->getPseudo();

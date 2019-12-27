@@ -2,6 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <link rel="icon" href=".public/img/favicon.png" type="image/png">
         <title>Billet simple pour l'Alaska</title>
         <link href="./public/css/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -11,11 +13,11 @@
     <body>
         <?php require('header.php'); ?>
         <section class="row">
-            <p class=" mt-2 ml-2">
+            <p class="back-link mt-2 ml-2">
                 <a href="index.php">Retour à la l'accueil</a>
             </p>
             <article class="news news-connect row justify-content-center">
-                <div class="col-6">
+                <div class="col-9 col-md-6">
                     <?php if (empty($_SESSION['id'])) { ?>
                     <form action="index.php?page=login" method="post">
                         <h2 class="mb-4">Connexion</h2>
@@ -29,11 +31,11 @@
                             <?php } ?>
                             <div class="form-group">
                                 <label for="pseudo" class="label-editor pl-2">Pseudo</label>
-                                <input type="text" name="pseudo" class="form-control" id="pseudoConnect" placeholder="Votre pseudo">
+                                <input type="text" name="pseudo" class="form-control" id="pseudoConnect" placeholder="Votre pseudo" required>
                             </div>
                             <div class="form-group mb-0">
                                 <label for="pass" class="label-editor pl-2">Mot de passe</label>
-                                <input type="password" name="pass" class="form-control" id="passConnect" placeholder="Password">
+                                <input type="password" name="pass" class="form-control" id="passConnect" placeholder="Password" required>
                             </div>
                             <input type="submit" class=" btn-publi btn-lg btn-block" value="Se connecter" />
                     </form>

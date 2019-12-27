@@ -3,6 +3,9 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta name="description" content="Bienvenue sur le blog de Jean Forteroche. Retrouvez chaque semaine un nouveau chapitre de son nouveau roman. Bonne lecture !">
+        <link rel="icon" href=".public/img/favicon.png" type="image/png">
         <title>Billet simple pour l'Alaska</title>
         <link href="./public/css/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -11,11 +14,24 @@
     <body>
         <?php require('header.php'); ?>
         <section class="row">
-            <p class="back-link m-2">
+            <p class="back-link mt-2 ml-2">
                 <a href="index.php">Retour à l'accueil</a>
             </p>
 
             <article class="news">
+            <p class="link mt-2 d-flex justify-content-between">
+                <?php if ($billet->getId() > 1 ) { ?>
+                    <a class="link-nav" href="index.php?page=chapitre&billet=<?= $billet->getId()-1 ?>" title="Chapitre précédent">
+                        <img src="./public/img/svg/prev.svg" alt="" class="icon icon-nav" />    
+                    </a>
+                <?php } else { ?>
+                    <a class="link-nav"></a>
+                <?php } if ($billet->getId() < $allBillet) { ?>
+                    <a class="link-nav" href="index.php?page=chapitre&billet=<?= $billet->getId()+1 ?>" title="Chapitre suivant">
+                        <img src="./public/img/svg/next.svg" alt="" class="icon icon-nav" />
+                    </a>
+                <?php } ?>
+            </p>
                 <h2>
                     <?= $billet->getTitre() ?>
                 </h2>
@@ -51,20 +67,20 @@
                         foreach ($commentaires as $commentaire) { 
                             if ($commentaire->getSignal() === '0' || isset($_SESSION['id'])) {
                     ?>
-                    <div class="show-commentaires mb-5 <?php if ($commentaire->getSignal() === '1') { ?>alert-danger<?php } ?>">
+                    <div class="show-commentaires pb-4 mb-5 <?php if ($commentaire->getSignal() === '1') { ?>alert-danger<?php } ?>">
                         <p>
                             <strong> <?= $commentaire->getPseudo() ?> </strong> 
                             <em class="small-date">le <?= $commentaire->getDateCommentaire() ?></em>
                         </p>
-                        <p class="ml-3"><?= $commentaire->getCommentaire() ?></p>
+                        <p class="ml-3 mb-0"><?= $commentaire->getCommentaire() ?></p>
                         <?php if (($commentaire->getSignal() === '0') && (!isset($_SESSION['id']))) { ?>
-                            <p>
+                            <p class="mb-0 text-right signaler">
                                 <a href="index.php?page=signal&billet=<?= $commentaire->getIdBillet() ?>&commentaire=<?= $commentaire->getId() ?>">
                                     Signaler le commentaire
                                 </a>   
                             </p>
                         <?php } elseif ($commentaire->getSignal() === '1') { ?>
-                            <p class="text-right">Ce commentaire à été signalé.<br>
+                            <p class="text-right mb-0 signaler">Ce commentaire à été signalé.<br>
                                 <a class="text-right approuve ml-1" href="index.php?page=approuve&billet=<?= $commentaire->getIdBillet() ?>&commentaire=<?= $commentaire->getId() ?>" title="Approuver le commentaire">
                                     <img src="./public/img/svg/approuve.svg" alt="" class="icon icon-approuve" />
                                     Approuver

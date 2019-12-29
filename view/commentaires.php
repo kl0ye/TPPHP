@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -25,7 +25,7 @@
                         <p class="mb-0"> 
                             <img src="./public/img/svg/check.svg" alt="" class="icon icon-alert mr-2" />
                             Le commentaire a été approuvé.
-                        </p class="alert">
+                        </p>
                     </div>
                 <?php } ?>
                 <table class="table table-sm">

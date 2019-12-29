@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8" />
         <meta name="description" content="Bienvenue sur le blog de Jean Forteroche. Retrouvez chaque semaine un nouveau chapitre de son nouveau roman. Bonne lecture !">

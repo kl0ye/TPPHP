@@ -155,7 +155,7 @@ header {
     text-decoration: none;
 }
 .form-control:focus {
-    border-color:  none!important;
+    border-color:  transparent!important;
     outline: 0;
     box-shadow: none!important;
 }

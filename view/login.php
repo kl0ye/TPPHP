@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -26,15 +26,15 @@
                                     <p class="mb-0"> 
                                         <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert mr-2" />
                                         <?= $errorLogin ?>
-                                    </p class="alert">
+                                    </p>
                                 </div>
                             <?php } ?>
                             <div class="form-group">
-                                <label for="pseudo" class="label-editor pl-2">Pseudo</label>
+                                <label for="pseudoConnect" class="label-editor pl-2">Pseudo</label>
                                 <input type="text" name="pseudo" class="form-control" id="pseudoConnect" placeholder="Votre pseudo" required>
                             </div>
                             <div class="form-group mb-0">
-                                <label for="pass" class="label-editor pl-2">Mot de passe</label>
+                                <label for="passConnect" class="label-editor pl-2">Mot de passe</label>
                                 <input type="password" name="pass" class="form-control" id="passConnect" placeholder="Password" required>
                             </div>
                             <input type="submit" class=" btn-publi btn-lg btn-block" value="Se connecter" />
@@ -46,7 +46,7 @@
                                 <p class="mb-0"> 
                                 <img src="./public/img/svg/check.svg" alt="" class="icon icon-alert mr-2" />
                                 <?= $successLogin ?>
-                                </p class="alert">
+                                </p>
                             </div>
                         <?php } if (isset($commentaireSignal)) { ?> 
                             <div class="alert alert-danger" role="alert">
@@ -105,5 +105,5 @@
                 </div>
             </article>
         </section>
-    </body>T
+    </body>
 </html>

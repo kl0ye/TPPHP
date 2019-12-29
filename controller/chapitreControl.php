@@ -37,13 +37,10 @@
             $signalCom = 'Le commentaire à bien été signalé.';
         }
         if (isset($_GET['billet'])) {
-
             $billetManager = new BilletsManager();   
-            $allBillet = count($billetManager->getAllBillet());
-            if (($_GET['billet'] > $allBillet) || ($_GET['billet'] < 1)) {
+            if (!($billet = $billetManager->get($_GET['billet'])))
                 header("Location: index.php?page=error");
-            }
-            $billet = $billetManager->get($_GET['billet']);
+            $allBillet = count($billetManager->getAllBillet());
             $commentaires = $commentaireManager->getAllCommentaire($_GET['billet']);
         }
 

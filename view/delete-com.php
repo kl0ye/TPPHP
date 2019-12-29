@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -20,7 +20,7 @@
                     <p class="alert-delete-publi mt-3"> 
                         <img src="./public/img/svg/alert.svg" alt="" class="icon icon-alert-delete mr-2" />
                         Attention vous êtes sur le point de supprimer ce commentaire !
-                    </p class="alert">
+                    </p>
                 </div>
                 <div class="confirm-delete text-center alert alert-secondary" role="alert">
                     <form action="index.php?page=delete-com" method="post">

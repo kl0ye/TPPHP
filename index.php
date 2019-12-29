@@ -66,7 +66,7 @@
         }
     }
     else 
-    {   
+    {
         require('controller/homeControl.php');
         getHome();
     }

@@ -39,7 +39,10 @@
             $req->execute([
                 'id' => $id
             ]);
-            return new Billet($req->fetch());
+            if ($data = $req->fetch())
+                return new Billet($data);
+            else 
+                return false;
         }
 
         public function getAllBillet() {

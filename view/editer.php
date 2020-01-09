@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <link rel="icon" href=".public/img/favicon.png" type="image/png">
         <title>Billet simple pour l'Alaska</title>
-        <link href="./public/css/style.css" rel="stylesheet" /> 
+        <link href="./public/css/style.css" rel="stylesheet" />
+        <link href="./public/css/icon.css" rel="stylesheet" />
+        <link href="./public/css/footer.css" rel="stylesheet" />
         <script src="/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
         <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script> 
         <script>tinymce.init({ selector:'textarea' });</script>
@@ -35,5 +37,6 @@
                 </div>
             </article>
         </section>
+        <?php require('view/footer.php'); ?>
     </body>
 </html>

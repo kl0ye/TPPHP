@@ -1,7 +1,9 @@
-<?php 
-    function getHome() {
+<?php
+    function getAccueil() {
+
         $billetManager = new BilletsManager();   
         $billets = $billetManager->getAllBillet();
+        $lastBillet = $billetManager->getLastBillet();
         $commentaireManager = new CommentairesManager();   
         $commentairesCheck = $commentaireManager->getListCommentaire();
         foreach ($commentairesCheck as $commentaire) { 
@@ -10,6 +12,5 @@
             }
         }
         $accueil = true;
-        require('view/home-list.php');
-    }
-
+        require('view/accueil.php');
+    }    

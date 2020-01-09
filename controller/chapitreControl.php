@@ -15,7 +15,7 @@
                 $validation = false;
                 $errorPseudo = 'Veuillez saisir un pseudo' ;
             }
-            else if (strlen($_POST['pseudo']) <= 3) {
+            else if (strlen($_POST['pseudo']) < 3) {
                 $validation = false;
                 $errorPseudo = 'Le pseudo doit comporter un minimum de 3 caractères.' ;
             }
@@ -23,7 +23,7 @@
                 $validation = false;
                 $errorCom = 'Veuillez saisir un commentaire.' ;
             }
-            else if (strlen($_POST['commentaire']) <= 3) {
+            else if (strlen($_POST['commentaire']) < 3) {
                 $validation = false;
                 $errorCom = 'Le commentaire doit comporter un minimum de 3 caractères.' ;
             }
@@ -37,7 +37,7 @@
             $signalCom = 'Le commentaire à bien été signalé.';
         }
         if (isset($_GET['billet'])) {
-            $billetManager = new BilletsManager();   
+            $billetManager = new BilletsManager();
             if (!($billet = $billetManager->get($_GET['billet'])))
                 header("Location: index.php?page=error");
             $allBillet = count($billetManager->getAllBillet());

@@ -43,6 +43,18 @@
             return $data;
         }
 
+        public function getLastCommentaire($idBillet) {
+            $data = [];
+            $req = $this->db->prepare('SELECT id, id_billet, pseudo, commentaire, signaler, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires WHERE id_billet = :id_billet ORDER BY date_commentaire DESC LIMIT 2');
+            $req->execute([
+                'id_billet' => $idBillet
+            ]);
+            while ($liste = $req->fetch()) {
+                $data[] = new Commentaire($liste);
+            }
+            return $data;
+        }
+
         public function getListCommentaire() {
             $data = [];
             $req = $this->db->query('SELECT id, id_billet, pseudo, commentaire, signaler, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%i\') AS date_commentaire_fr FROM commentaires ORDER BY date_commentaire');

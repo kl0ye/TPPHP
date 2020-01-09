@@ -6,6 +6,8 @@
         <link rel="icon" href=".public/img/favicon.png" type="image/png">
         <title>Billet simple pour l'Alaska</title>
         <link href="./public/css/style.css" rel="stylesheet" />
+        <link href="./public/css/icon.css" rel="stylesheet" />
+        <link href="./public/css/footer.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
         
@@ -44,5 +46,6 @@
                 </div><br />
             </article>
         </section>
+        <?php require('view/footer.php'); ?>
     </body>
 </html>

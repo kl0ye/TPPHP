@@ -10,63 +10,60 @@
 
     if (!empty($_GET)) 
     {
-        if ($_GET['page'] === "chapitre") 
+        switch ($_GET['page'])
         {
-        require('controller/chapitreControl.php');
-        getChapitre();
-        }
-        elseif ($_GET['page'] === 'delete')
-        {
-            require('controller/deleteControl.php');
-            getDelete();
-        }
-        elseif ($_GET['page'] === 'delete-com')
-        {
-            require('controller/commentairesControl.php');
-            getDeleteCom();
-        }
-        elseif ($_GET['page'] === 'commentaires')
-        {
-            require('controller/commentairesControl.php');
-            getCommentaire();
-        }
-        elseif ($_GET['page'] === 'signal') 
-        {
-            require('controller/commentairesControl.php');
-            getSignal();
-        }
-        elseif ($_GET['page'] === 'approuve')
-        {
-            require('controller/commentairesControl.php');
-            getApprouve();
-        }
-        elseif ($_GET['page'] === 'login')
-        {
-            require('controller/loginControl.php');
-            getLogin();
-        }
-        elseif ($_GET['page'] === 'editer')
-        {
-            require('controller/editerControl.php');
-            getEditer();
-        }
-        elseif ($_GET['page'] === 'board')
-        {
-            require('controller/boardControl.php');
-            getBoard();
-        }
-        elseif ($_GET['page'] === 'update') 
-        {
-            require('controller/updateControl.php');
-            getUpdate();
-        }
-        else {
-            require('controller/404Control.php');
-            getError();
+            case 'chapitre':
+                require('controller/chapitreControl.php');
+                getChapitre();
+                break;
+            case 'delete':
+                require('controller/deleteControl.php');
+                getDelete();
+                break;
+            case 'delete-com':
+                require('controller/commentairesControl.php');
+                getDeleteCom();
+                break;
+            case 'commentaires':
+                require('controller/commentairesControl.php');
+                getCommentaire();
+                break;
+            case 'signal':
+                require('controller/commentairesControl.php');
+                getSignal();
+                break;
+            case 'approuve':
+                require('controller/commentairesControl.php');
+                getApprouve();
+                break;
+            case 'login':
+                require('controller/loginControl.php');
+                getLogin();
+                break;
+            case 'editer':
+                require('controller/editerControl.php');
+                getEditer();
+                break;
+            case 'board':
+                require('controller/boardControl.php');
+                getBoard();
+                break;
+            case 'update':
+                require('controller/updateControl.php');
+                getUpdate();
+                break;
+            case 'home':
+                require('controller/homeControl.php');
+                getHome();
+                break;
+            default:
+                require('controller/404Control.php');
+                getError();
+                break;
         }
     }
-    else 
+     else
     {
-        require('controller/homeControl.php');
-        getHome();
+        require('controller/accueilControl.php');
+        getAccueil();
     }

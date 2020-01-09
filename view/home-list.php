@@ -7,6 +7,8 @@
         <link rel="icon" href=".public/img/favicon.png" type="image/png">
         <title>Billet simple pour l'Alaska</title>
         <link href="./public/css/style.css" rel="stylesheet" />
+        <link href="./public/css/icon.css" rel="stylesheet" />
+        <link href="./public/css/footer.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
         
@@ -19,29 +21,29 @@
                         <?= $billet->getTitre() ?><br />
                     </h2>
                     <hr class="mt-0 separator" />
-                    <?php if (isset($_SESSION['id'])) { ?>
-                    <p class="date-crea">
+                    <div class="date-crea">
                         <em>le <?= $billet->getDateCreation() ?></em>
-                        <a class="editer ml-1" href="index.php?page=update&billet=<?= $billet->getId() ?>" title="Editer l'article">
-                            <img src="./public/img/svg/pen.svg" alt="" class="icon icon-editer" />
-                            Editer
-                        </a>
-                        <a class="delete ml-1" href="index.php?page=delete&billet=<?= $billet->getId() ?>" title="Supprimer l'article">
-                            <img src="./public/img/svg/trash.svg" alt="" class="icon icon-delete" />
-                            Supprimer
-                        </a>
-                    </p>
-                    <?php } ?>
+                        <?php if (isset($_SESSION['id'])) { ?>
+                            <a class="editer ml-1" href="index.php?page=update&billet=<?= $billet->getId() ?>" title="Editer l'article">
+                                <img src="./public/img/svg/pen.svg" alt="" class="icon icon-editer" />
+                                Editer
+                            </a>
+                            <a class="delete ml-1" href="index.php?page=delete&billet=<?= $billet->getId() ?>" title="Supprimer l'article">
+                                <img src="./public/img/svg/trash.svg" alt="" class="icon icon-delete" />
+                                Supprimer
+                            </a>
+                        <?php } ?>
+                    </div>
                     <div class="contenu contenu-hidden">
-                    <?= $billet->getContenu() ?>
-                    <br />
+                        <?= $billet->getContenu() ?>
+                        <br />
                     </div>
                     <a href="index.php?page=chapitre&billet=<?= $billet->getId() ?>">Lire la suite..</a>
                     <hr />
                     <div class="commentaires">
                         <h4 class="text-center mb-4">Derniers commentaires</h4>
                         <?php 
-                            $commentaires = $commentaireManager->getAllCommentaire($billet->getId());
+                            $commentaires = $commentaireManager->getLastCommentaire($billet->getId());
                             foreach ($commentaires as $commentaire) { 
                                 if ($commentaire->getSignal() === '0') {
                         ?>
@@ -61,5 +63,6 @@
                 </article>
             <?php } ?>
         </section>
+        <?php require('view/footer.php'); ?>
     </body>
 </html>

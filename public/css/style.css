@@ -33,6 +33,15 @@ h4 {
 a, a:hover {
     color: #036bdc!important;
 }
+.no-link , .no-link:hover {
+    color: #000!important;
+    text-decoration: none;
+    margin: 3rem;
+}
+.no-link-title, .no-link-title:hover {
+    color: #FFF!important;
+    text-decoration: none;
+}
 label {
     width: 100%;
     color: #FFF;
@@ -65,9 +74,6 @@ header {
 .accueil {
     margin: 10rem auto 6.5rem auto!important;
 }
-.connect:hover {
-    text-decoration: none;
-}
 .header-purple {
     background-color:#505f8a;
 }
@@ -87,15 +93,18 @@ header {
 .separator {
     width: 5rem;
 }
-.img-jean {
-    margin-top: 3rem;
-    text-align: right;
+.presentation-jean, .intro-accueil {
     display: flex;
     align-items: flex-end;
 }
 .photo-jean {
-    height: 18rem;
     filter: grayscale(1);
+}
+.photo-jean {
+    height: 18rem;
+}
+.bspa {
+    height: 15rem;
 }
 .label-editor {
     font-size: 1.25rem;  
@@ -151,81 +160,33 @@ header {
 .back-link, .link {
     width: 100%;
 }
-.link-nav:hover {
-    text-decoration: none;
-}
 .form-control:focus {
     border-color:  transparent!important;
     outline: 0;
     box-shadow: none!important;
 }
-.delete {
+.delete, .delete:hover {
     color: #da061a!important;
-}
-.approuve {
-    color: #155724!important;
-}
-.editer {
-    color: #505f8a!important;
-}
-.edit-new {
-    color: #505f8a!important;
-}
-.delete:hover {
-    color: #da061a!important;
-}
-.approuve:hover {
-    color: #155724!important;
-}
-.editer:hover {
-    color: #505f8a!important;
-}
-.edit-new:hover {
-    color: #505f8a!important;
-}
-.eye:hover {
     text-decoration: none;
 }
-.icon {
-    margin-bottom: .2rem;
+.approuve, .approuve:hover {
+    color: #155724!important;
+    text-decoration: none;
 }
-.icon-delete, .icon-editer {
-    width: .7rem;
+.editer, .editer:hover,
+.edit-new, .edit-new:hover {
+    color: #505f8a!important;
+    text-decoration: none;
 }
-.icon-eye {
-    width: .9rem;
-}
-.icon-alert, .icon-comment, .icon-log, .icon-edit, .icon-approuve, .icon-nav {
-    width: 1rem;
-}
-.icon-user {
-    width: 5rem;
-    height: 5rem;
-    background: #dbe0ed;
-    border: 2px solid #505f8a;
-    border-radius: 50%;
-}
-.icon-file {
-    width: 2rem;
-}
-.icon-board, .icon-comment-regular {
-    height: 3rem;
-}
-.icon-comment-regular {
-    margin-top: .4rem;
-}
-.icon-alert-delete {
-    margin-bottom: .35rem;
-    width: 1.5rem;
+.eye:hover, .params:hover,
+.link-nav:hover, .connect:hover {
+    text-decoration: none;
 }
 .alert-delete-publi {
     font-size: 1.2rem;
 }
 .alert-success {
     width: 100%;
-}
-.params:hover {
-    text-decoration: none;
 }
 .fa-comment-alt {
     color: #036bdc;
@@ -239,6 +200,9 @@ header {
     width: 140%;
     transform: translateX(-18%);
     margin-top: 2rem;
+}
+.action-accueil-table {
+    margin: 2rem auto;
 }
 .table-list {
     background-color: #505f8a;
@@ -257,6 +221,20 @@ header {
 @media screen and (max-width: 768px) {
     .news {
         padding: 2rem 1rem;
+    }
+    .presentation-jean, .intro-accueil {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .bio > p {
+        text-align: justify;
+        margin: 3rem 1rem!important;
+    }
+    .photo-jean {
+        margin-top: 3rem;
+    }
+    .no-link {
+        margin: 0;
     }
 }
 @media screen and (min-width: 420px) and (max-width: 450px) {

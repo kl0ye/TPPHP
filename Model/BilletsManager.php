@@ -54,6 +54,23 @@
             return $data;
         }
 
+        public function getAllIdBillet() {
+            $data = [];
+            $req = $this->db->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet ORDER BY date_creation');
+            while ($liste = $req->fetch()) {
+                $data[] = $liste['id'];
+            }
+            return $data;
+        }
+
+        public function getLastBillet() {
+            $req = $this->db->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%i\') AS date_creation_fr FROM billet ORDER BY id DESC LIMIT 1');
+            if ($data = $req->fetch())
+                return new Billet($data);
+            else 
+                return false;
+        }
+
         public function update($titre, $contenu, $id) 
         {
             $reqUpdate =  $this->db->prepare('UPDATE billet SET titre = :titre , contenu = :contenu WHERE billet . id = :id');
@@ -68,10 +85,6 @@
         {
             $reqDeleteArticle = $this->db->prepare('DELETE FROM billet WHERE id = :id');
             $reqDeleteArticle->execute([
-                'id' => $id
-            ]);
-            $reqDeleteCom = $this->db->prepare('DELETE FROM commentaires WHERE id_billet = :id');
-            $reqDeleteCom->execute([
                 'id' => $id
             ]);
         }

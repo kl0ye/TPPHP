@@ -1,0 +1,35 @@
+.icon {
+    margin-bottom: .2rem;
+}
+.icon-delete, .icon-editer {
+    width: .7rem;
+}
+.icon-eye {
+    width: .9rem;
+}
+.icon-alert, .icon-comment, .icon-log, .icon-edit, .icon-approuve, .icon-nav {
+    width: 1rem;
+}
+.icon-user {
+    width: 5rem;
+    height: 5rem;
+    background: #dbe0ed;
+    border: 2px solid #505f8a;
+    border-radius: 50%;
+}
+.icon-file, .icon-rs {
+    width: 2rem;
+}
+.icon-board, .icon-comment-regular {
+    height: 3rem;
+}
+.icon-comment-regular {
+    margin-top: .4rem;
+}
+.icon-alert-delete {
+    margin-bottom: .35rem;
+    width: 1.5rem;
+}
+.icon-rs:hover {
+    width: 2.2rem;
+}

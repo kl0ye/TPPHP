@@ -2,7 +2,9 @@
     <header class="header-img">
         <img src="./public/img/alaska3.jpg" class="img-alaska" alt="">
         <div class="header-contenu">
-            <h1 class="accueil">Billet simple pour l'Alaska</h1>
+            <h1 class="accueil">
+                <a class="no-link-title" href="index.php">Billet simple pour l'Alaska</a>
+            </h1>
             <nav class="text-right pb-2 mr-3">
                 <?php if (isset($_SESSION['id'])){ ?>
                     <a class="connect" href="index.php?page=login" title="Se connecter">
@@ -14,7 +16,7 @@
                         </a> 
                     <?php } ?>
                     <a class="params ml-2 mr-2" href="index.php?page=board" title="Aller au tableau de bord">
-                        <img src="./public/img/svg/params.svg" alt="" class="icon icon-log" />
+                        <img src="./public/img/svg/board-head.svg" alt="" class="icon icon-log" />
                     </a>
                 <?php } else { ?>
                     <a class="connect" href="index.php?page=login" title="Se connecter">
@@ -28,7 +30,9 @@
     <header class="header-img-other">
         <img src="./public/img/alaska3.jpg" class="img-alaska" alt="">
         <div class="header-contenu">
-            <h1 class="other">Billet simple pour l'Alaska</h1>
+            <h1 class="other">
+                <a class="no-link-title" href="index.php">Billet simple pour l'Alaska</a>
+            </h1>
             <nav class="text-right pb-2 mr-3">
                 <?php if (isset($_SESSION['id'])){ ?>
                     <a class="connect" href="index.php?page=login" title="Se déconnecter">
@@ -40,7 +44,7 @@
                         </a> 
                     <?php } ?>
                     <a class="params ml-2 mr-2" href="index.php?page=board" title="Aller au tableau de bord">
-                        <img src="./public/img/svg/params.svg" alt="" class="icon icon-log" />
+                        <img src="./public/img/svg/board-head.svg" alt="" class="icon icon-log" />
                     </a>
                 <?php } else { ?>
                     <a class="connect" href="index.php?page=login" title="Se connecter">

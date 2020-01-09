@@ -8,30 +8,19 @@
         <link rel="icon" href=".public/img/favicon.png" type="image/png">
         <title>Billet simple pour l'Alaska</title>
         <link href="./public/css/style.css" rel="stylesheet" />
+        <link href="./public/css/icon.css" rel="stylesheet" />
+        <link href="./public/css/footer.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
         
     <body>
         <?php require('header.php'); ?>
         <section class="row">
-            <div class="back-link mt-2 ml-2">
-                <a href="index.php">Retour à l'accueil</a>
-            </div>
+            <p class="back-link mt-2 ml-2">
+                <a href="index.php?page=home">Retour à la liste des chapitres</a>
+            </p>
 
             <article class="news">
-            <div class="link mt-2 d-flex justify-content-between">
-                <?php if ($billet->getId() > 1 ) { ?>
-                    <a class="link-nav" href="index.php?page=chapitre&billet=<?= $billet->getId()-1 ?>" title="Chapitre précédent">
-                        <img src="./public/img/svg/prev.svg" alt="" class="icon icon-nav" />    
-                    </a>
-                <?php } else { ?>
-                    <a class="link-nav"></a>
-                <?php } if ($billet->getId() < $allBillet) { ?>
-                    <a class="link-nav" href="index.php?page=chapitre&billet=<?= $billet->getId()+1 ?>" title="Chapitre suivant">
-                        <img src="./public/img/svg/next.svg" alt="" class="icon icon-nav" />
-                    </a>
-                <?php } ?>
-            </div>
                 <h2>
                     <?= $billet->getTitre() ?>
                 </h2>
@@ -138,5 +127,6 @@
                 </div>
             </article>
         </section>
+        <?php require('view/footer.php'); ?>
     </body>
 </html>
